@@ -1,0 +1,336 @@
+/*Allgemein*/
+*,html{
+    font-family:sans-serif
+}
+
+div.page{
+    background-color: white;
+    margin: auto;
+    min-height: 100vh;
+    width: 95%;
+}
+
+html,body{
+    background-color:rgb(51,51,51);
+    font-size:14pt;
+    margin:0px;
+    padding:0px
+}
+
+header{
+    text-align:center;
+    position:relative;
+    background-color: rgb(51,51,51);
+    color: white
+}
+
+main{
+    padding:5px;
+    border-radius: 5px;
+}
+
+button{
+    background-color: white;
+    border: 0.2px solid black;
+    border-radius: 5px;
+    color: rgb(51, 51, 51);
+    font-size: 12pt;
+    height: 30px;
+}
+
+/*Überschriften*/
+h1 {
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
+h2 {
+    color: rgb(51, 51, 51);
+    font-weight: lighter;
+    text-align: center;
+    text-decoration: underline;
+}
+
+/*Passwort ändern*/
+.changePasswordDiv {
+    border: 0.2px solid black;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+main form.changePassword {
+    width:400px;
+    margin:auto
+}
+
+main form.changePassword input{
+    border: medium none;
+    font-size: 14pt;
+    width: 100%;
+    height: 40px;
+    border-bottom: 0.2px solid black;
+}
+
+main form.changePassword input:last-child{
+    border: medium none;
+}
+
+main form.changePassword button{
+    float: right;
+    margin-top: 10px;
+    width: 45%;
+}
+
+/*Neuen Nutzer anlegen*/
+.newUserDiv {
+    border: 0.2px solid black;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+main form.newUser {
+    width:400px;
+    margin:auto
+}
+
+main form.newUser input{
+    border: medium none;
+    font-size: 14pt;
+    width: 100%;
+    height: 40px;
+    border-bottom: 0.2px solid black;
+}
+
+main form.newUser input:last-child{
+    border: medium none;
+}
+
+main form.newUser button{
+    float: right;
+    margin-top: 10px;
+    width: 45%;
+}
+
+/*Bestätigungscode*/
+.registerDiv {
+    border: 0.2px solid black;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+main form.register{
+    width:400px;
+    margin:auto
+}
+
+main form.register input{
+    border: medium none;
+    font-size: 14pt;
+    width: 100%;
+    height: 40px;
+}
+
+main form.register button{
+    float: right;
+    margin-top: 10px;
+    width: 50%;
+}
+
+/*Passwort vergessen*/
+.lostPasswordDiv {
+    border: 0.2px solid black;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+main form.lostPassword{
+    width:400px;
+    margin:auto
+}
+
+main form.lostPassword input{
+    border: medium none;
+    font-size: 14pt;
+    width: 100%;
+    height: 40px;
+}
+
+main form.lostPassword button{
+    float: right;
+    margin-top: 10px;
+    width: 45%;
+}
+
+/*Login*/
+.loginDiv {
+    border: 0.2px solid black;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+main form.login{
+    width:400px;
+    margin:auto
+}
+
+main form.login input{
+    border: medium none;
+    font-size: 14pt;
+    width: 100%;
+    height: 40px;
+}
+
+main form.login input:first-child{
+    border-bottom: 0.2px solid black
+}
+
+main form.login button{
+    float: right;
+    margin-top: 10px;
+    width: 20%;
+}
+
+.linkDiv {
+    font-size: 15px;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/*Setting-Icon*/
+a.setting{
+    position:absolute;
+    right: 60px;
+    top: -2px;
+}
+
+a.setting img{
+    height:41px
+}
+
+.settings{
+    display: block;
+    float: right;
+    height: 46px;
+    position: absolute;
+    right: 60px;
+    top: 0;
+    width: 41px;
+}
+
+ul.sub1{
+    border: 3px solid rgb(51, 51, 51);
+    border-radius: 5px;
+    display: none;
+    margin-left: -115px;
+    margin-top: 41px;
+    padding: 0;
+    background-color: white;
+}
+
+ul.sub1 a {
+    color: rgb(51, 51, 51);
+    text-decoration: none;
+}
+li:hover .sub1{
+    display: block;
+}
+
+
+/*Logout-Button*/
+a.logout{
+    position:absolute;
+    right:20px;
+    top:3px
+}
+
+a.logout img{
+    height:32px
+}
+
+a.logout img:hover{
+    opacity:0.7
+}
+
+/* Home Button*/
+a.home {
+    left: 0px;
+    position: absolute;
+    top: -7px;
+}
+
+a.home img {
+    height: 50px;
+}
+
+a.home img:hover{
+    opacity:0.7
+}
+
+/* Login Button*/
+a.login {
+    right: 20px;
+    position: absolute;
+    top: 1px;
+}
+
+a.login img {
+    height: 35px;
+}
+
+a.login img:hover{
+    opacity:0.7
+}
+
+
+/*Profil*/
+
+.userHeader {
+    background-color: rgb(51, 51, 51);
+    border-radius: 5px;
+    color: white;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.profilAction{
+    display: flex;
+    margin-left: 60px;
+    margin-top: 60px;
+}
+
+.userImg {
+    height: 30px;
+    margin-bottom: -5px;
+}
+
+.user{
+    padding-left: 25px;
+}
+
+.allArticlesDiv{
+   margin-right: 40px;
+}
+
+a.filesImg img, a.newArticleImg img{
+    height: 80px;
+    border-radius: 5px;
+}
+
+.labelAction{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.searchDiv{
+    border-bottom: 2px solid ;
+    border-color: rgb(51,51,51);
+
+}
+
+.selectionBox{
+
+}
+
+.inputSearch{
+
+}
