@@ -1,0 +1,10 @@
+/* Neuen Artikel hinzufügen*/
+.addArticleDiv{
+    margin-left: 12px;
+    max-width: 80%;
+}
+
+.newArticle input{
+    border-radius: 5px;
+    height: 25px;
+}

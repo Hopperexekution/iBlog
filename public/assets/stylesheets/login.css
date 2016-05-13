@@ -1,0 +1,34 @@
+/*Login*/
+.loginDiv {
+    border: 0.2px solid black;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+main form.login{
+    width:400px;
+    margin:auto
+}
+
+main form.login input{
+    border: medium none;
+    font-size: 14pt;
+    width: 100%;
+    height: 40px;
+}
+
+main form.login input:first-child{
+    border-bottom: 0.2px solid black
+}
+
+main form.login button{
+    float: right;
+    margin-top: 10px;
+    width: 20%;
+}
+
+.linkDiv {
+    font-size: 15px;
+    font-style: italic;
+    margin-top: 10px;
+}
