@@ -38,6 +38,10 @@ button{
     height: 30px;
 }
 
+button:hover{
+    cursor: pointer;
+}
+
 /*Überschriften*/
 h1 {
     margin-bottom: 0;
@@ -51,149 +55,66 @@ h2 {
     text-decoration: underline;
 }
 
-/*Passwort ändern*/
-.changePasswordDiv {
-    border: 0.2px solid black;
-    border-radius: 5px;
-    padding: 2px;
+/*Fehlermeldungen*/
+
+.failDiv{
+    margin-bottom: 10px;
+    text-align: center;
 }
 
-main form.changePassword {
-    width:400px;
-    margin:auto
+.failRegistration, .successRegistration{
+  border: 1px solid;
+  border-radius: 5px;
+  height: 80px;
+  overflow: hidden;
+  padding: 2px;
+  resize: none;
+  width: 370px;
 }
 
-main form.changePassword input{
-    border: medium none;
-    font-size: 14pt;
-    width: 100%;
-    height: 40px;
-    border-bottom: 0.2px solid black;
+.failRegistration{
+  border-color: red;
+  color: red;
 }
 
-main form.changePassword input:last-child{
-    border: medium none;
+.successRegistration{
+  border-color: green;
+  color: green;
 }
 
-main form.changePassword button{
-    float: right;
-    margin-top: 10px;
-    width: 45%;
+span {
+    cursor: pointer;
 }
 
-/*Neuen Nutzer anlegen*/
-.newUserDiv {
-    border: 0.2px solid black;
-    border-radius: 5px;
-    padding: 2px;
+/************************Header************************/
+/* Home Button*/
+a.home {
+    left: 0px;
+    position: absolute;
+    top: -7px;
 }
 
-main form.newUser {
-    width:400px;
-    margin:auto
+a.home img {
+    height: 50px;
 }
 
-main form.newUser input{
-    border: medium none;
-    font-size: 14pt;
-    width: 100%;
-    height: 40px;
-    border-bottom: 0.2px solid black;
+a.home img:hover{
+    opacity:0.7
 }
 
-main form.newUser input:last-child{
-    border: medium none;
+/*User in Leiste */
+.userImgLogin{
+    height: 25px;
+    left: 60px;
+    position: absolute;
+    top: 6px;
 }
 
-main form.newUser button{
-    float: right;
-    margin-top: 10px;
-    width: 45%;
-}
-
-/*Bestätigungscode*/
-.registerDiv {
-    border: 0.2px solid black;
-    border-radius: 5px;
-    padding: 2px;
-}
-
-main form.register{
-    width:400px;
-    margin:auto
-}
-
-main form.register input{
-    border: medium none;
-    font-size: 14pt;
-    width: 100%;
-    height: 40px;
-}
-
-main form.register button{
-    float: right;
-    margin-top: 10px;
-    width: 50%;
-}
-
-/*Passwort vergessen*/
-.lostPasswordDiv {
-    border: 0.2px solid black;
-    border-radius: 5px;
-    padding: 2px;
-}
-
-main form.lostPassword{
-    width:400px;
-    margin:auto
-}
-
-main form.lostPassword input{
-    border: medium none;
-    font-size: 14pt;
-    width: 100%;
-    height: 40px;
-}
-
-main form.lostPassword button{
-    float: right;
-    margin-top: 10px;
-    width: 45%;
-}
-
-/*Login*/
-.loginDiv {
-    border: 0.2px solid black;
-    border-radius: 5px;
-    padding: 2px;
-}
-
-main form.login{
-    width:400px;
-    margin:auto
-}
-
-main form.login input{
-    border: medium none;
-    font-size: 14pt;
-    width: 100%;
-    height: 40px;
-}
-
-main form.login input:first-child{
-    border-bottom: 0.2px solid black
-}
-
-main form.login button{
-    float: right;
-    margin-top: 10px;
-    width: 20%;
-}
-
-.linkDiv {
+.userLogin{
     font-size: 15px;
-    font-style: italic;
-    margin-top: 10px;
+    left: 95px;
+    position: absolute;
+    top: 12px;
 }
 
 /*Setting-Icon*/
@@ -217,6 +138,7 @@ a.setting img{
     width: 41px;
 }
 
+/*Einstellungen! Nochmal überprüfen*/
 ul.sub1{
     border: 3px solid rgb(51, 51, 51);
     border-radius: 5px;
@@ -236,6 +158,9 @@ li:hover .sub1{
 }
 
 
+
+
+
 /*Logout-Button*/
 a.logout{
     position:absolute;
@@ -248,21 +173,6 @@ a.logout img{
 }
 
 a.logout img:hover{
-    opacity:0.7
-}
-
-/* Home Button*/
-a.home {
-    left: 0px;
-    position: absolute;
-    top: -7px;
-}
-
-a.home img {
-    height: 50px;
-}
-
-a.home img:hover{
     opacity:0.7
 }
 
@@ -281,10 +191,47 @@ a.login img:hover{
     opacity:0.7
 }
 
+/*Von mehreren Seiten genutzt*/
+.textareaEdit{
+    margin: auto;
+    resize: vertical;
+    width: 100%;
+    max-height: 100vh;
+}
 
-/*Profil*/
+.editOldArticle button, .newArticle button{
+    float: right;
+    margin-left: 5px;
+    margin-top: 5px;
+}
 
-.userHeader {
+.bold{
+    font-weight: bold;
+}
+
+.italic{
+    font-style: italic;
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sideHeaderDiv {
     background-color: rgb(51, 51, 51);
     border-radius: 5px;
     color: white;
@@ -292,6 +239,17 @@ a.login img:hover{
     padding: 5px;
 }
 
+.start .sideHeaderDiv{
+    display: flex;
+}
+
+
+
+
+
+
+
+/*Profil*/
 .profilAction{
     display: flex;
     margin-left: 60px;
@@ -303,7 +261,7 @@ a.login img:hover{
     margin-bottom: -5px;
 }
 
-.user{
+.sideHeader{
     padding-left: 25px;
 }
 
@@ -321,16 +279,190 @@ a.filesImg img, a.newArticleImg img{
     font-weight: bold;
 }
 
-.searchDiv{
-    border-bottom: 2px solid ;
-    border-color: rgb(51,51,51);
+.searchBar{
+    display: flex;
+    text-align: center;
+    width: 80%;
+}
 
+.searchDiv{
+    background-color: white;
+    border: 0.2px solid rgb(51, 51, 51);
+    border-radius: 5px;
+    display: flex;
+    margin-left: 30%;
+    margin-right: 5px;
+    width: 33%;
 }
 
 .selectionBox{
-
+    border: medium none;
+    height: 30px;
+    margin-left: 2px;
 }
 
 .inputSearch{
+    border: medium none;
+    height: 30px;
+}
 
+.titleDiv{
+    /*border: 0.5px solid rgb(51,51,51);*/
+    margin-top: 5px;
+
+}
+
+.titleLabelDiv {
+    border: 0.5px solid rgb(51, 51, 51);
+    border-radius: 5px;
+    display: flex;
+    height: 50px;
+    margin: 10px;
+    padding: 2px 2px 2px 5px;
+}
+
+.titleLabelDiv:hover {
+    box-shadow: 4px 4px 3px rgb(51, 51, 51);
+    cursor: pointer;
+}
+
+.imgUserName{
+
+}
+
+.user-articleImg {
+    border: 0.2px solid rgb(51, 51, 51);
+    border-radius: 5px;
+    height: 35px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.titleLabel {
+    color: black;
+    font-size: 20px;
+    margin-top: 12px;
+    padding-left: 65px;
+   /* position: fixed;*/
+    text-decoration: underline;
+    width: 80%;
+}
+
+.titleLabel:hover {
+    cursor: pointer;
+}
+
+.nameUserArticle {
+    font-size: 10px;
+    margin-left: -55px;
+    margin-top: 36px;
+   /* position: fixed;*/
+}
+
+
+/* Link-Einstellungen für article*/
+.linkArticle{
+    text-decoration: none;
+}
+
+.linkArticle a:link{
+    color:black
+}
+/* visited link */
+.linkArticle:visited {
+    color: black;
+}
+
+/* mouse over link */
+.linkArticle:hover {
+    color: black;
+}
+
+/* selected link */
+.linkArticle:active {
+    color: black;
+}
+
+
+
+/* Single-Article*/
+
+
+.userArticle {
+    border: 0.5px solid rgb(51, 51, 51);
+    border-radius: 5px;
+    float: right;
+    height: 25px;
+    margin-bottom: 2px;
+}
+
+.userArticleEdit {
+    border: 0.5px solid rgb(51, 51, 51);
+    border-radius: 5px;
+    float: right;
+    height: 23px;
+    margin-left: 10px;
+    padding: 1px;
+}
+
+/*von mehreren php seiten wird das benutzt*/
+.singleArticle {
+    margin: 15px auto auto;
+    max-width: 98%;
+    min-height: 100vh;
+}
+
+
+/*Kommentare*/
+.commments {
+    margin-top: 80px;
+}
+
+.titleComment{
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.commentsarea {
+    border: 0.2px solid rgb(51, 51, 51);
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 3px;
+}
+
+
+
+
+
+.textareaRead{
+    margin: auto;
+    resize: none;
+    width: 100%;
+}
+.textareaReadComment{
+    margin-bottom: auto;
+    margin-left: 25px;
+    margin-right: auto;
+    resize: none;
+    width: 90%;
+}
+
+.article button{
+    float: right;
+    margin-top: 5px;
+}
+
+
+.owner{
+    float: right;
+    padding-right: 10px;
+}
+
+
+
+
+
+/*Own Articles*/
+.dateLabel {
+    float: right;
 }

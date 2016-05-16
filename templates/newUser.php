@@ -1,6 +1,37 @@
+<link rel="stylesheet" href="assets/stylesheets/newUser.css">
+
+<div class="sideHeaderDiv">
+    <label class="sideHeader">Neues Konto erstellen</label>
+</div>
+
 <form action="index.php?register" method="post" class="newUser">
 
-    <h2>Neues Konto erstellen</h2>
+    <?php if(Session::passwordfailed()) : ?>
+        <div class="failDiv">
+            <span onclick="this.parentElement.style.display='none';">&times;</span>
+            <label class="failRegistration"> Passwort falsch </label>
+        </div>
+    <?php endif ?>
+    <?php if(Session::userexists()) : ?>
+      <div class="failDiv">
+          <span onclick="this.parentElement.style.display='none';">&times;</span>
+          <label class="failRegistration"> Der User existiert bereits </label>
+        </div>
+    <?php endif ?>
+    <?php if(Session::inputfalse()) : ?>
+      <div class="failDiv">
+          <span onclick="this.parentElement.style.display='none';">&times;</span>
+          <textarea class="failRegistration"> <?php echo $_SESSION['error_input'] ?> </textarea>
+        </div>
+    <?php endif ?>
+
+    <?php if(Session::mailfailed()===true) : ?>
+        <div class="failDiv">
+            <span onclick="this.parentElement.style.display='none';">&times;</span>
+            <label class="failRegistration"> Die Mail konnte nicht zugestellt werden, bitte registrieren Sie sich neu. </label>
+        </div>
+
+    <?php endif ?>
 
     <div class="newUserDiv">
         <input id="firstname" type="text" name="firstname" placeholder="Vorname">
@@ -11,7 +42,5 @@
 
     </div>
     <button>Registrieren</button>
-
-
 
 </form>

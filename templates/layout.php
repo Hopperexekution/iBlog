@@ -12,6 +12,11 @@
              <h1>iBlog</h1>
              <a class="home" href="?home=1"><img src="assets/images/home.png"></a>
              <?php if (Session::authenticated()) : ?>
+                 <img src="assets/images/user.png" class="userImgLogin">
+                 <label id="profilname" class="userLogin"></label>
+                 <script type="text/javascript">
+                     document.getElementById("profilname").innerHTML = "<?php echo $_SESSION['user']?>";
+                 </script>
                 <a class="logout" href="?logout=1"><img src="assets/images/logout.png"></a>
                 <a class="setting" href="?setting=1"><img src="assets/images/setting.png">
                     <li class="settings">

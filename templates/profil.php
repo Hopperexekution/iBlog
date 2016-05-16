@@ -1,10 +1,16 @@
+<div class="sideHeaderDiv">
+    <label class="sideHeader">Dein Profil</label>
+</div>
+
 <form action="index.php" method="post" class="profil">
 
-    <div class="userHeader">
-        <img src="assets/images/user.png" class="userImg">
-        <label class="user">Anna Leinkenjost</label>
-    </div>
 
+    <?php if(Session::passwordchanged() && Session::passwordchangetried()) : ?>
+        <div class="passwortChangeDiv">
+            <span onclick="this.parentElement.style.display='none';">&times;</span>
+            <label class="correctPasswordChange"> Sie haben Ihr Passwort erfolgreich geändert </label>
+        </div>
+    <?php endif ?>
 
     <div class="profilAction">
         <div class="allArticlesDiv">

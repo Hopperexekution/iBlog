@@ -1,6 +1,23 @@
-<form action="index.php" method="post" class="login">
+<link rel="stylesheet" href="assets/stylesheets/login.css">
 
-    <h2>Login</h2>
+<div class="sideHeaderDiv">
+    <label class="sideHeader">Login</label>
+</div>
+
+<form action="index.php?login" method="post" class="login">
+
+    <?php if(Session::passwordfalse()) : ?>
+    <div class="failDiv">
+        <span onclick="this.parentElement.style.display='none';">&times;</span>
+        <label class="failRegistration"> Email oder Passwort ist falsch </label>
+    </div>
+    <?php endif ?>
+    <?php if(Session::mailsend()) : ?>
+    <div class="mailPasswordDiv">
+        <span onclick="this.parentElement.style.display='none';">&times;</span>
+        <label class="mailPassword"> Die Mail mit dem neuen Password wurde Ihnen zugesandt </label>
+    </div>
+    <?php endif ?>
 
     <div class="loginDiv">
        <input id="username" type="text" name="username" placeholder="Email-Adresse">
@@ -16,5 +33,3 @@
     </div>
 
 </form>
-
-
