@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="assets/stylesheets/article.css">
 
 <form action="index.php" method="post" class="article">
 

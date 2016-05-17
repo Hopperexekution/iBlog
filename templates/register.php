@@ -7,15 +7,15 @@
 <form action="index.php?confirm" method = "post" class="register">
 
   <?php if(!Session::codecorrect() && Session::confirmationtried()) : ?>
-      <div class="failDiv">
+      <div class="infoDiv">
           <span onclick="this.parentElement.style.display='none';">&times;</span>
-          <label class="failRegistration"> Der eingegebene Bestätigungscode ist falsch </label>
+          <textarea class="failRegistration" rows="1"> Der eingegebene Bestätigungscode ist falsch. </textarea>
       </div>
   <?php endif ?>
   <?php if(Session::mailsend()) : ?>
-      <div class="mailSendDiv">
+      <div class="infoDiv">
           <span onclick="this.parentElement.style.display='none';">&times;</span>
-          <label class="successRegistration"> Die Mail wurde versandt </label>
+          <textarea class="successRegistration" rows="1"> Die Mail wurde versandt. </textarea>
       </div>
   <?php endif ?>
     <div class="registerDiv">
@@ -26,4 +26,4 @@
         <button>Anmeldung abschließen</button>
       </form>
 
-        <a href="index.php?sendCodeAgain"> <button>Code erneut senden</button> </a>
+        <a href="index.php?sendCodeAgain"> <button class="codeAgain">Code erneut senden</button> </a>

@@ -7,15 +7,15 @@
 <form action="index.php?alterPassword" method="post" class="changePassword">
 
     <?php if(Session::passwordfalse()) : ?>
-        <div class="failDiv">
+        <div class="infoDiv">
             <span onclick="this.parentElement.style.display='none';">&times;</span>
-            <label class="failRegistration"> Sie haben ein falsches Kennwort eingegeben </label>
+            <textarea class="failRegistration" rows="1">Sie haben ein falsches Kennwort eingegeben.</textarea>
         </div>
     <?php endif ?>
     <?php if(!(Session::passwordchanged()) && Session::passwordchangetried()) : ?>
-        <div class="failDiv">
+        <div class="infoDiv">
             <span onclick="this.parentElement.style.display='none';">&times;</span>
-            <label class="failRegistration"> Bitte überprüfen Sie die Eingaben Ihres neuen Passworts </label>
+            <textarea class="failRegistration" rows="2">Bitte überprüfen Sie die Eingaben Ihres neuen Passworts.</textarea>
         </div>
     <?php endif ?>
 

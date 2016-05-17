@@ -1,0 +1,126 @@
+/************************Header************************/
+/* Home Button*/
+a.home {
+    left: 0px;
+    position: absolute;
+    top: -7px;
+}
+
+a.home img {
+    height: 50px;
+}
+
+a.home img:hover{
+    opacity:0.7
+}
+
+/*User in Leiste */
+.userImgLogin{
+    height: 25px;
+    left: 60px;
+    position: absolute;
+    top: 6px;
+}
+
+.userLogin{
+    font-size: 15px;
+    left: 95px;
+    position: absolute;
+    top: 12px;
+}
+
+/*Setting-Icon*/
+a.setting{
+    position:absolute;
+    right: 60px;
+    top: -2px;
+}
+
+a.setting img{
+    height:41px
+}
+
+.settings{
+    display: block;
+    float: right;
+    height: 46px;
+    position: absolute;
+    right: 60px;
+    top: 0;
+    width: 41px;
+}
+
+/*Einstellungen - Submenu*/
+ul.subMenu{
+    border: 3px solid rgb(51, 51, 51);
+    border-radius: 5px;
+    display: none;
+    margin-left: -115px;
+    margin-top: 41px;
+    padding: 0;
+    background-color: white;
+}
+
+.subMenu a {
+    color: rgb(51, 51, 51);
+    text-decoration: none;
+}
+li:hover .subMenu{
+    display: block;
+}
+
+
+/*Logout-Button*/
+a.logout{
+    position:absolute;
+    right:25px;
+    top:3px
+}
+
+a.logout img{
+    height:32px
+}
+
+a.logout img:hover{
+    opacity:0.7;
+}
+
+/*Tool-Tip für Login/Logout*/
+
+.tooltip .tooltiptext {
+    /*color: #c1cdc1;
+    padding: 5px 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    visibility: hidden;
+    width: 70px;*/
+
+    color: #c1cdc1;
+    padding: 5px 0;
+    position: absolute;
+    right: -36px;
+    text-align: center;
+    top: 5px;
+    visibility: hidden;
+    width: 70px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* Login Button*/
+a.login {
+    right: 20px;
+    position: absolute;
+    top: 1px;
+}
+
+a.login img {
+    height: 35px;
+}
+
+a.login img:hover{
+    opacity:0.7
+}

@@ -28,3 +28,8 @@ main .register button{
     margin-top: -2px;
     text-align: center;
 }
+
+.codeAgain{
+    float: right;
+    margin-right: 30px;
+}

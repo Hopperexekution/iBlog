@@ -7,28 +7,28 @@
 <form action="index.php?register" method="post" class="newUser">
 
     <?php if(Session::passwordfailed()) : ?>
-        <div class="failDiv">
+        <div class="infoDiv">
             <span onclick="this.parentElement.style.display='none';">&times;</span>
-            <label class="failRegistration"> Passwort falsch </label>
+            <textarea class="failRegistration" rows="1"> Passwörter stimmen nicht überein! </textarea>
         </div>
     <?php endif ?>
     <?php if(Session::userexists()) : ?>
-      <div class="failDiv">
+      <div class="infoDiv">
           <span onclick="this.parentElement.style.display='none';">&times;</span>
-          <label class="failRegistration"> Der User existiert bereits </label>
+          <textarea class="failRegistration" rows="1"> Der User existiert bereits. </textarea>
         </div>
     <?php endif ?>
     <?php if(Session::inputfalse()) : ?>
-      <div class="failDiv">
+      <div class="infoDiv">
           <span onclick="this.parentElement.style.display='none';">&times;</span>
           <textarea class="failRegistration"> <?php echo $_SESSION['error_input'] ?> </textarea>
         </div>
     <?php endif ?>
 
     <?php if(Session::mailfailed()===true) : ?>
-        <div class="failDiv">
+        <div class="infoDiv">
             <span onclick="this.parentElement.style.display='none';">&times;</span>
-            <label class="failRegistration"> Die Mail konnte nicht zugestellt werden, bitte registrieren Sie sich neu. </label>
+            <textarea class="failRegistration" rows="2"> Die Mail konnte nicht zugestellt werden, bitte registrieren Sie sich neu. </textarea>
         </div>
 
     <?php endif ?>

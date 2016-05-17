@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="assets/stylesheets/home.css">
+
 <form action="index.php" method="post" class="start">
 
     <div class="sideHeaderDiv">
@@ -18,9 +20,10 @@
     </div>
 
     <?php if(Session::codecorrect() && Session::confirmationtried()) : ?>
-        <div class="failDiv">
+        <div class="infoDiv">
             <span onclick="this.parentElement.style.display='none';">&times;</span>
-            <label class="failRegistration"> Die Anmeldung wurde erfolgreich abgeschlossen </label>
+            <textarea class="successRegistration" rows="1"> Die Anmeldung wurde erfolgreich abgeschlossen. </textarea>
+            <textarea class="successRegistration" rows="1"> Die Anmeldung wurde erfolgreich abgeschlossen. </textarea>
         </div>
     <?php endif ?>
 

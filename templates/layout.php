@@ -2,8 +2,9 @@
 <html>
  <head>
      <title> iBlog </title>
-     <meta charset="windows-1252">
+     <meta charset="utf-8">
      <link rel="stylesheet" href="assets/stylesheets/stylesheet.css">
+     <link rel="stylesheet" href="assets/stylesheets/header.css">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
  </head>
  <body>
@@ -17,19 +18,25 @@
                  <script type="text/javascript">
                      document.getElementById("profilname").innerHTML = "<?php echo $_SESSION['user']?>";
                  </script>
-                <a class="logout" href="?logout=1"><img src="assets/images/logout.png"></a>
-                <a class="setting" href="?setting=1"><img src="assets/images/setting.png">
+                 <div class="tooltip">
+                     <a class="logout" href="?logout=1"><img src="assets/images/logout.png"></a>
+                     <span class="tooltiptext">Logout</span>
+                 </div>
+                 <a class="setting" href="?setting=1"><img src="assets/images/setting.png">
                     <li class="settings">
-                         <ul class="sub1">
-                             <li class="sub1"><a href="index.php?profil">Profil</a></li>
-                             <li class="sub1"><a href="index.php?changePassword">Passwort ändern</a></li>
+                         <ul class="subMenu">
+                             <li class="subMenu"><a href="index.php?profil">Profil</a></li>
+                             <li class="subMenu"><a href="index.php?changePassword">Passwort ändern</a></li>
                          </ul>
                     </li>
                 </a>
              <?php endif ?>
 
              <?php if (!Session::authenticated()) : ?>
-                 <a class="login" href="?login=1"><img src="assets/images/white-login.png"></a>
+                 <div class="tooltip">
+                     <a class="login" href="?login=1"><img src="assets/images/white-login.png"></a>
+                     <span class="tooltiptext">Login</span>
+                 </div>
              <?php endif ?>
 
 

@@ -1,0 +1,61 @@
+/* Single-Article*/
+
+/*article*/
+.userArticle {
+    border: 0.5px solid rgb(51, 51, 51);
+    border-radius: 5px;
+    float: right;
+    height: 25px;
+    margin-bottom: 2px;
+}
+
+.userArticleEdit {
+    border: 0.5px solid rgb(51, 51, 51);
+    border-radius: 5px;
+    float: right;
+    height: 23px;
+    margin-left: 10px;
+    padding: 1px;
+}
+
+.article button{
+    float: right;
+    margin-top: 5px;
+}
+
+.owner{
+    float: right;
+    padding-right: 10px;
+}
+
+
+/*Kommentare*/
+.commments {
+    margin-top: 80px;
+}
+
+.titleComment{
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.commentsarea {
+    border: 0.2px solid rgb(51, 51, 51);
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 3px;
+}
+
+.textareaRead{
+    margin: auto;
+    resize: none;
+    width: 100%;
+}
+
+.textareaReadComment{
+    margin-bottom: auto;
+    margin-left: 25px;
+    margin-right: auto;
+    resize: none;
+    width: 90%;
+}
