@@ -21,7 +21,7 @@
     <?php if(Session::inputfalse()) : ?>
       <div class="infoDiv">
           <span onclick="this.parentElement.style.display='none';">&times;</span>
-          <textarea class="failRegistration"> <?php echo $_SESSION['error_input'] ?> </textarea>
+          <textarea class="failRegistration" rows= "1"><?php echo $_SESSION['error_input'] ?></textarea>
         </div>
     <?php endif ?>
 

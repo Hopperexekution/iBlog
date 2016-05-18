@@ -172,6 +172,7 @@ class Session {
 
     public function create_user($firstname, $lastname, $mail, $password, $password2)
     {
+        unset($_SESSION['error_input']);
       if(empty($firstname)){
         $_SESSION['error_input'] .= "Bitte einen Vornamen angeben.\n";
       }
@@ -240,6 +241,11 @@ class Session {
       ));
 
       $user = $stmt->fetchColumn();
+
+      if($user == NULL){
+            return "User unbekannt";
+      }
       return $user;
     }
+  
 }

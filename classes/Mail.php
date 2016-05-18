@@ -31,12 +31,12 @@ class Mail{
     $code = mt_rand(10000000, 99999999);
     //Speichern des Codes in der Datenbank
     global $dbh;
-
+    $hash = password_hash($code, PASSWORD_DEFAULT);
     $stmt = $dbh->prepare("UPDATE user SET code=:code WHERE mail = :mail");
 
     $stmt->execute(array(
         'mail'     => $mail,
-        'code'     => $code,
+        'code'     => $hash,
     ));
     return $code;
   }
@@ -61,13 +61,17 @@ class Mail{
     $_SESSION['confirmation_tried']=true;
 
     global $dbh;
-    $stmt = $dbh->prepare("SELECT COUNT(*) FROM user WHERE code=:code AND mail=:mail");
+
+    $stmt = $dbh->prepare("SELECT code FROM user
+            WHERE mail = :user");
 
     $stmt->execute(array(
-        'code'     => $code,
-        'mail'     => $mail
+        'user'     => $mail,
     ));
-    if ($stmt->fetchColumn() == 1){
+
+    $hash = $stmt->fetchColumn();
+
+    if (password_verify($code, $hash)){
       $_SESSION['code_correct'] = true;
       return true;
     }else{

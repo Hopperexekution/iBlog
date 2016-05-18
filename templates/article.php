@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="assets/stylesheets/article.css">
 
-<form action="index.php" method="post" class="article">
+
 
   <div class="sideHeaderDiv">
     <label class="sideHeader"><?php echo $article['title'] ?></label>
@@ -12,22 +12,31 @@
       <img src="assets/images/user.png" class="userArticle">
       <label class="owner"><?php echo Session::getuserbyid($article['user_id'])?></label>
   </div>
-</form>
+
 <form action="index.php?saveComment" method="post" class="article">
   <div class="singleArticle">
-    <textarea readonly class="textareaRead"><?php echo $article['text'] ?></textarea>
+      <div class="textareaRead">
+          <textbox  ><?php echo $article['text'] ?></textbox>
+      </div>
+      <label class="dateLabel"><?php echo date("d.m.Y - H:i", strtotime($article['date']))?></label>
+
 
     <div class="commments">
-      <label class="titleComment">Kommentare</label>
 
-        <?php if (!empty($comments)) foreach ($comments as $comment) :?>
+
+        <?php if (!empty($comments)) : ?>
+           <label class="titleComment">Kommentare</label>
+          <?php foreach ($comments as $comment) :?>
+
         <div class="commentsarea">
           <img src="assets/images/user-article.png" class="user-articleImg">
           <label class="nameUserArticle"><?php echo Session::getuserbyid($comment['user_id'])?></label>
-          <textarea readonly class="textareaReadComment" rows="3"><?php echo $comment['text'] ?></textarea>
+          <label class="dateLabel"><?php echo date("d.m.Y - H:i", strtotime($comment['date']))?></label>
+          <textarea readonly class="textareaReadComment" rows="3"><?php echo $comment[nl2br('text')] ?></textarea>
         </div>
 
         <? endforeach ?>
+        <?php endif ?>
       </div>
 
       <?php if(Session::authenticated()) :?>

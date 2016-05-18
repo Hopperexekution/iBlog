@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="assets/stylesheets/home.css">
 
 <form action="index.php" method="post" class="start">
-
     <div class="sideHeaderDiv">
         <label class="sideHeader">Aktuelle Beiträge</label>
 
@@ -23,7 +22,6 @@
         <div class="infoDiv">
             <span onclick="this.parentElement.style.display='none';">&times;</span>
             <textarea class="successRegistration" rows="1"> Die Anmeldung wurde erfolgreich abgeschlossen. </textarea>
-            <textarea class="successRegistration" rows="1"> Die Anmeldung wurde erfolgreich abgeschlossen. </textarea>
         </div>
     <?php endif ?>
 
@@ -39,7 +37,11 @@
                 <label id = "<?php echo $article['id'] ?>" class="nameUserArticle"><?php echo Session::getuserbyid($article['user_id']) ?></label>
             </div>
             <label class="titleLabel"><?php echo $article['title'] ?></label>
-
+            <div>
+                <img src="assets/images/like.jpg" class="likeImg">
+                <label>Nummer</label>
+            </div>
+            <label class="dateLabel"><?php echo date("d.m.Y - H:i", strtotime($article['date']))?><br>Thema: <?php echo $article['description'] ?></label>
 
         </div>
         </a>

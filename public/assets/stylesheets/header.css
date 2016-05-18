@@ -48,6 +48,7 @@ a.setting img{
     right: 60px;
     top: 0;
     width: 41px;
+    text-align: right;
 }
 
 /*Einstellungen - Submenu*/
@@ -64,6 +65,7 @@ ul.subMenu{
 .subMenu a {
     color: rgb(51, 51, 51);
     text-decoration: none;
+    padding-right: 5px;
 }
 li:hover .subMenu{
     display: block;

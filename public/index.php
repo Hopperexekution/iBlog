@@ -78,7 +78,6 @@ elseif (isset($_REQUEST['logout'])) {
 }
 
 elseif (isset($_REQUEST['register'])) {
-    unset($_SESSION['error_input']);
     Session::create_user($_REQUEST['firstname'],$_REQUEST['lastname'],$_REQUEST['username'],$_REQUEST['password'], $_REQUEST['password2']);
     if (Session::passwordfailed()) {
         $template_data['title'] = 'Neues Konto erstellen';
@@ -181,10 +180,16 @@ elseif (isset($_REQUEST['newArticle'])) {
     Template::render('newArticle', $template_data);
 }
 elseif (isset($_REQUEST['saveArticle'])) {
-    Article::saveArticle($_REQUEST['title'], $_REQUEST['theme'],$_REQUEST['textareaEdit']);
-    $template_data['articles'] = Article::getAll();
-    $template_data['title'] = 'Startseite';
-    Template::render('start', $template_data);
+    Article::saveArticle($_REQUEST['title'], $_REQUEST['theme'], $_REQUEST['textareaEdit']);
+    if(Session::inputfalse()) {
+        $template_data['title'] = 'Neuer Beitrag';
+        Template::render('newArticle', $template_data);
+        unset($_SESSION['error_input']);
+    } else {
+        $template_data['articles'] = Article::getAll();
+        $template_data['title'] = 'Startseite';
+        Template::render('start', $template_data);
+    }
 }
 elseif (isset($_REQUEST['saveComment'])) {
     Comment::saveComment($_REQUEST['textareaComment']);
