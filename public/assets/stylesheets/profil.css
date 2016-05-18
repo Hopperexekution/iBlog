@@ -5,11 +5,11 @@
     margin-top: 60px;
 }
 
-.allArticlesDiv{
+.allArticlesDiv, .newArticleDiv, .newPictureDiv{
     margin-right: 40px;
 }
 
-a.filesImg img, a.newArticleImg img{
+a.filesImg img, a.newArticleImg img, a.newPictureImg img{
     height: 80px;
     border-radius: 5px;
 }
