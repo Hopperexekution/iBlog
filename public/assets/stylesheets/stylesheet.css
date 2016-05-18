@@ -25,7 +25,7 @@ header{
 }
 
 main{
-    padding:5px;
+    padding: 0 5px 5px;
     border-radius: 5px;
 }
 
@@ -45,7 +45,7 @@ button:hover{
 /*Überschriften*/
 h1 {
     margin-bottom: 0;
-    margin-top: 5px;
+    margin-top: -15px;
 }
 
 h2 {
@@ -136,12 +136,13 @@ span {
     background-color: rgb(51, 51, 51);
     border-radius: 5px;
     color: white;
-    margin-bottom: 5px;
+    margin-bottom: -12px;
     padding: 5px;
 }
 
 .start .sideHeaderDiv{
     display: flex;
+    margin-top: -12px;
 }
 
 .sideHeader{

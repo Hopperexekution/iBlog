@@ -229,6 +229,10 @@ elseif (isset($_REQUEST['saveComment'])) {
   Template::render('article', $template_data);
 
 }
+elseif (isset($_REQUEST['newPic'])){
+    $template_data['title'] = 'Neues Foto';
+    Template::render('newPicture', $template_data);
+}
 
 elseif (Session::authenticated()) {
     $template_data['articles'] = Article::getAll();

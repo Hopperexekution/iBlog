@@ -25,6 +25,12 @@
             <br>
             <label class="labelAction">Neuer Beitrag</label>
         </div>
+        <div class="newPictureDiv">
+            <a class="newPictureImg" href="?newPic=1"><img src="assets/images/camera.png"></a>
+            <br>
+            <label class="labelAction">Neues Profilfoto</label>
+        </div>
+
     </div>
 
 
