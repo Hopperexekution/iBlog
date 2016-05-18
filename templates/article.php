@@ -18,12 +18,15 @@
           <textbox><?php echo $article['text'] ?></textbox>
       </div>
       <label class="dateLabel"><?php echo date("d.m.Y - H:i", strtotime($article['date']))?></label>
+      <div class="likeDiv">
       <?php if(Article::likeable(Session::getArticleId(), Session::getuserid())):?>
-        <a href="index.php?like"><button>Gefällt mir</button></a>
+        <a href="index.php?like"><img src="assets/images/like.jpg" class="likeImg"></a>
+
       <?php else :?>
-        <label class="likes">Likes</label>
+          <img src="assets/images/like.jpg" class="noLikeImg">
       <?php endif ?>
-      <label><?php echo Article::getLikes($article['id'])?></label>
+      <label class="likeNumber"><?php echo Article::getLikes($article['id'])?></label>
+      </div>
 <form action="index.php?saveComment" method="post" class="article">
     <div class="commments">
 
@@ -51,7 +54,7 @@
         </div>
 
           <button>Kommentar speichern</button>
-
+      <?php endif ?>
     </div>
 
 

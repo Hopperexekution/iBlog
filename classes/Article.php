@@ -14,8 +14,15 @@ class Article {
           $_SESSION['error_input'] .= "Bitte ein Thema angeben.\n";
       }
       if(empty($text)){
-          $_SESSION['error_input'] .= "Bitte einen Beitrag verfassen.";
+          $_SESSION['error_input'] .= "Bitte einen Beitrag verfassen.\n";
       }
+      if(strlen($theme)>100){
+          $_SESSION['error_input'] .= "Das Thema darf höchstens 100 Zeichen lang sein.\n";
+      }
+      if(strlen($title)>100){
+          $_SESSION['error_input'] .= "Der Titel darf höchstens 100 Zeichen lang sein.\n";
+      }
+
       if(!isset($_SESSION['error_input'])){
     global $dbh;
 
@@ -74,6 +81,8 @@ class Article {
   }
   public static function getAll()
   {
+      //Setzen des Headers Aktuelle Beiträge, bevor eine Suche ausgeführt wird
+      $_SESSION['search']="Aktuelle Beiträge";
       global $dbh;
 
       return $dbh->query("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM theme left join theme_article on theme.id = theme_article.theme_id
@@ -183,20 +192,28 @@ public static function getLikes($article){
 }
 public static function likeable($article, $user){
   global $dbh;
-  $stmt = $dbh->prepare("SELECT COUNT(*) FROM article WHERE id=:article AND user_id =:user");
-  if($stmt->fetchColumn()==0){
-    $stmt = $dbh->prepare("SELECT COUNT(*) FROM user_likes_article WHERE user_id=:user AND article_id=:article");
-    $stmt->execute(array(
-      'user'=>$user,
-      'article' => $article
-    ));
-    if($stmt->fetchColumn()==0){
-      return true;
-    }else{
-      return false;
-    }
+  if(Session::authenticated()) {
+      $stmt = $dbh->prepare("SELECT COUNT(*) FROM article WHERE id=:article AND user_id =:user");
+      $stmt->execute(array(
+          'user' => $user,
+          'article' => $article
+      ));
+      if ($stmt->fetchColumn() == 0) {
+          $stmt = $dbh->prepare("SELECT COUNT(*) FROM user_likes_article WHERE user_id=:user AND article_id=:article");
+          $stmt->execute(array(
+              'user' => $user,
+              'article' => $article
+          ));
+          if ($stmt->fetchColumn() == 0) {
+              return true;
+          } else {
+              return false;
+          }
+      } else {
+          return false;
+      }
   }else{
-    return false;
+      return false;
   }
 }
 

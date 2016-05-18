@@ -61,3 +61,19 @@
     resize: none;
     width: 90%;
 }
+
+.likeDiv{
+    display: flex;
+    margin-top: 4px;
+}
+
+.noLikeImg{
+    height: 30px;
+    width: 30px;
+    opacity: 0.2;
+}
+
+.likeNumber{
+    margin-left: 10px;
+    margin-top: 12px;
+}

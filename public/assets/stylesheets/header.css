@@ -25,8 +25,12 @@ a.home img:hover{
 .userLogin{
     font-size: 15px;
     left: 95px;
+    max-width: 35%;
+    overflow: hidden;
     position: absolute;
+    text-overflow: ellipsis;
     top: 12px;
+    white-space: nowrap;
 }
 
 /*Setting-Icon*/

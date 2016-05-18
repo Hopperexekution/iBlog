@@ -1,8 +1,7 @@
 /*Home-Seite*/
 .searchBar{
     display: flex;
-    text-align: center;
-    width: 80%;
+    width: 30%;
 }
 
 .searchDiv{
@@ -10,9 +9,8 @@
     border: 0.2px solid rgb(51, 51, 51);
     border-radius: 5px;
     display: flex;
-    margin-left: 30%;
     margin-right: 5px;
-    width: 33%;
+    width: 80%;
 }
 
 .selectionBox{

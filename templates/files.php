@@ -14,9 +14,9 @@
               <label id = "<?php echo $article['id'] ?>" class="nameUserArticle"><?php echo Session::getuserbyid($article['user_id']) ?></label>
           </div>
           <label class="titleLabel"><?php echo $article['title'] ?></label>
-          <div>
+          <div class="likeDiv">
               <img src="assets/images/like.jpg" class="likeImg">
-              <label><?php echo Article::getLikes($article['id'])?></label>
+              <label class="likeNumber"><?php echo Article::getLikes($article['id'])?></label>
           </div>
           <label class="dateLabel"><?php echo date("d.m.Y - H:i", strtotime($article['date']))?><br>Thema: <?php echo $article['description'] ?></label>
       </div>
