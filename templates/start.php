@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/stylesheets/home.css">
+﻿<link rel="stylesheet" href="assets/stylesheets/home.css">
 
 <form action="index.php?search" method="post" class="start" name="search">
     <div class="sideHeaderDiv">

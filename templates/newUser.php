@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/stylesheets/newUser.css">
+﻿<link rel="stylesheet" href="assets/stylesheets/newUser.css">
 
 <div class="sideHeaderDiv">
     <label class="sideHeader">Neues Konto erstellen</label>

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 class Comment {
   public static function saveComment($text){
     global $dbh;

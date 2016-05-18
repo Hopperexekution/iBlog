@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/stylesheets/lostPassword.css">
+﻿<link rel="stylesheet" href="assets/stylesheets/lostPassword.css">
 
 <div class="sideHeaderDiv">
     <label class="sideHeader">Passwort vergessen</label>

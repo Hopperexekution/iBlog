@@ -1,4 +1,4 @@
-<div class="sideHeaderDiv">
+﻿<div class="sideHeaderDiv">
     <label class="sideHeader">Eigene Beiträge</label>
 </div>
 

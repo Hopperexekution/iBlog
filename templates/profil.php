@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/stylesheets/profil.css">
+﻿<link rel="stylesheet" href="assets/stylesheets/profil.css">
 
 <div class="sideHeaderDiv">
     <label class="sideHeader">Dein Profil</label>

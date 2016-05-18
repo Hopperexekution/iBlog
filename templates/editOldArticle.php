@@ -1,4 +1,4 @@
-<form action="index.php?updateArticle" method="post" class="editOldArticle">
+﻿<form action="index.php?updateArticle" method="post" class="editOldArticle">
 
     <div class="sideHeaderDiv">
         <label class="sideHeader"><?php echo $article['title'] ?></label>

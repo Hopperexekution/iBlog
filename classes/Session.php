@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class Session {
     public static function check_credentials($mail, $password)

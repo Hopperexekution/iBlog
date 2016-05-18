@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/stylesheets/newArticle.css">
+﻿<link rel="stylesheet" href="assets/stylesheets/newArticle.css">
 
 <div class="sideHeaderDiv">
     <label class="sideHeader">Neuen Beitrag erfassen</label>

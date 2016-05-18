@@ -1,4 +1,4 @@
-<form action="index.php" method="post" class="login">
+﻿<form action="index.php" method="post" class="login">
    <label for="artist">
        Künstler:
    </label>

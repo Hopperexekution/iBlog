@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/stylesheets/register.css">
+﻿<link rel="stylesheet" href="assets/stylesheets/register.css">
 
 <div class="sideHeaderDiv">
     <label class="sideHeader">Email-Adresse bestätigen</label>
