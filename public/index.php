@@ -180,7 +180,7 @@ elseif (isset($_REQUEST['newArticle'])) {
     Template::render('newArticle', $template_data);
 }
 elseif (isset($_REQUEST['saveArticle'])) {
-    Article::saveArticle($_REQUEST['title'], $_REQUEST['theme'], $_REQUEST['textareaEdit']);
+    Article::saveArticle(htmlspecialchars($_REQUEST['title']), htmlspecialchars($_REQUEST['theme']), htmlspecialchars($_REQUEST['textareaEdit']));
     if(Session::inputfalse()) {
         $template_data['title'] = 'Neuer Beitrag';
         Template::render('newArticle', $template_data);
