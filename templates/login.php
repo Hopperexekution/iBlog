@@ -20,7 +20,7 @@
     <?php endif ?>
 
     <div class="loginDiv">
-       <input id="username" type="text" name="username" placeholder="Email-Adresse">
+       <input id="username" type="text" name="username" placeholder="Email-Adresse" value=<?php echo $_REQUEST['username']?>>
        <input id="password" type="password" name="password" placeholder="Passwort">
     </div>
 
