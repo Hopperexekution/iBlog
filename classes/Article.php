@@ -114,6 +114,90 @@ class Article {
           return false;
       }
 
+    }
+    public static function searchTitle($title){
+      global $dbh;
+      $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM theme left join theme_article on theme.id = theme_article.theme_id
+ left join article on article.id = theme_article.article_id WHERE article.title LIKE :title ORDER BY date DESC");
+      $stmt->execute(array(
+        'title' => '%'.$title.'%'
+      ));
+      return $stmt ->fetchAll(PDO::FETCH_ASSOC);
+
+  }
+    public static function searchUser($user){
+      global $dbh;
+
+      $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM theme left join theme_article on theme.id = theme_article.theme_id
+ left join article on article.id = theme_article.article_id left join user on article.user_id=user.id WHERE user.lastname LIKE :user OR user.firstname LIKE :user ORDER BY date DESC");
+      $stmt->execute(array(
+        'user' => '%'.$user.'%'
+      ));
+      return $stmt ->fetchAll(PDO::FETCH_ASSOC);
+
+  }
+  public static function searchTheme($theme){
+    global $dbh;
+
+    $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM theme left join theme_article on theme.id = theme_article.theme_id
+left join article on article.id = theme_article.article_id  WHERE theme.description LIKE :theme ORDER BY date DESC");
+    $stmt->execute(array(
+      'theme' => '%'.$theme.'%'
+    ));
+    return $stmt ->fetchAll(PDO::FETCH_ASSOC);
+
+}
+public static function searchAll($input){
+  global $dbh;
+
+  $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM theme left join theme_article on theme.id = theme_article.theme_id
+left join article on article.id = theme_article.article_id left join user on article.user_id=user.id WHERE user.lastname LIKE :input OR user.firstname LIKE :input OR theme.description LIKE :input OR article.title LIKE :input ORDER BY date DESC");
+  $stmt->execute(array(
+    'input' => '%'.$input.'%'
+  ));
+  return $stmt ->fetchAll(PDO::FETCH_ASSOC);
+
+}
+public static function like($user, $article){
+  global $dbh;
+  $stmt = $dbh->prepare("SELECT COUNT(*) FROM user_likes_article WHERE user_id=:user AND article_id=:article");
+  $stmt->execute(array(
+    'user'=>$user,
+    'article' => $article
+  ));
+  if($stmt->fetchColumn()==0){
+    $stmt = $dbh->prepare("INSERT INTO user_likes_article (user_id, article_id) VALUES (:user, :article)");
+    $stmt->execute(array(
+      'user'=>$user,
+      'article' => $article
+    ));
+  }
+}
+public static function getLikes($article){
+  global $dbh;
+  $stmt = $dbh->prepare("SELECT COUNT(*) FROM user_likes_article WHERE article_id=:article");
+  $stmt->execute(array(
+    'article' => $article
+  ));
+  return $stmt->fetchColumn();
+}
+public static function likeable($article, $user){
+  global $dbh;
+  $stmt = $dbh->prepare("SELECT COUNT(*) FROM article WHERE id=:article AND user_id =:user");
+  if($stmt->fetchColumn()==0){
+    $stmt = $dbh->prepare("SELECT COUNT(*) FROM user_likes_article WHERE user_id=:user AND article_id=:article");
+    $stmt->execute(array(
+      'user'=>$user,
+      'article' => $article
+    ));
+    if($stmt->fetchColumn()==0){
+      return true;
+    }else{
+      return false;
+    }
+  }else{
+    return false;
+  }
 }
 
 

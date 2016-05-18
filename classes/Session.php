@@ -77,6 +77,12 @@ class Session {
     public static function inputfalse(){
       return(isset($_SESSION['error_input']));
     }
+    public static function searched(){
+      return($_SESSION['search']);
+    }
+    public static function getArticleId(){
+      return($_SESSION['article_id']);
+    }
 
     public static function logout()
     {
@@ -151,7 +157,7 @@ class Session {
     }
     public function changePassword($password, $password2){
       $_SESSION['password_change_tried']=true;
-      if($password == $password2){
+      if($password == $password2&&!empty($password)){
         global $dbh;
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $dbh->prepare("UPDATE user SET password=:password
@@ -247,5 +253,5 @@ class Session {
       }
       return $user;
     }
-  
+
 }

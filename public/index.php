@@ -197,6 +197,37 @@ elseif (isset($_REQUEST['saveComment'])) {
     $template_data['comments']=Comment::getAllComments();
     $template_data['title'] = 'Artikel-Seite';
     Template::render('article', $template_data);
+
+}elseif(isset($_REQUEST['search'])){
+  $_SESSION['search']="Suche nach \"".$_REQUEST['inputSearch']. "\" in ".$_REQUEST['selectionBox'];
+  if($_REQUEST['selectionBox']=='Titel'){
+    $template_data['articles'] = Article::searchTitle($_REQUEST['inputSearch']);
+    $template_data['title'] = 'Startseite';
+    Template::render('start', $template_data);
+
+  }elseif($_REQUEST['selectionBox']=='Benutzer'){
+    $template_data['articles'] = Article::searchUser($_REQUEST['inputSearch']);
+    $template_data['title'] = 'Startseite';
+    Template::render('start', $template_data);
+
+  }elseif($_REQUEST['selectionBox']=='Thema'){
+    $template_data['articles'] = Article::searchTheme($_REQUEST['inputSearch']);
+    $template_data['title'] = 'Startseite';
+    Template::render('start', $template_data);
+
+  }else{
+    $template_data['articles'] = Article::searchAll($_REQUEST['inputSearch']);
+    $template_data['title'] = 'Startseite';
+    Template::render('start', $template_data);
+  }
+  $_SESSION['search']="Aktuelle Beiträge";
+}elseif(isset($_REQUEST['like'])){
+  Article::like(Session::getuserid(), $_SESSION['article_id']);
+  $template_data['article']= Article::getArticle($_SESSION['article_id']);
+  $template_data['comments']=Comment::getAllComments();
+  $template_data['title'] = 'Artikel-Seite';
+  Template::render('article', $template_data);
+
 }
 
 elseif (Session::authenticated()) {

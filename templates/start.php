@@ -1,23 +1,24 @@
 <link rel="stylesheet" href="assets/stylesheets/home.css">
 
-<form action="index.php" method="post" class="start">
+<form action="index.php?search" method="post" class="start" name="search">
     <div class="sideHeaderDiv">
-        <label class="sideHeader">Aktuelle Beiträge</label>
-
+        <label class="sideHeader" id="sideHeader" name ="sideHeader"><?php echo Session::searched()?></label>
         <div class="searchBar">
             <div class="searchDiv">
-                <select class="selectionBox" name="">
-                    <option value="kategorie" selected="kategorie">Suchkategorie wählen...</option>
-                    <option value="titel">Titel</option>
-                    <option value="benutzer">Benutzer</option>
-                    <option value="thema">Thema</option>
+                <select class="selectionBox" name="selectionBox">
+                    <option value="allen Kategorien" selected="kategorie">Suchkategorie wählen...</option>
+                    <option value="Titel">Titel</option>
+                    <option value="Benutzer">Benutzer</option>
+                    <option value="Thema">Thema</option>
                 </select>
-                <input class="inputSearch" type="search" name="name" placeholder="Suchbergriff">
+                <input class="inputSearch" type="search" name="inputSearch" placeholder="Suchbergriff">
             </div>
+
             <button>Suchen</button>
         </div>
     </div>
-
+</form>
+<form action="index.php" method="post" class="start">
     <?php if(Session::codecorrect() && Session::confirmationtried()) : ?>
         <div class="infoDiv">
             <span onclick="this.parentElement.style.display='none';">&times;</span>
@@ -39,7 +40,7 @@
             <label class="titleLabel"><?php echo $article['title'] ?></label>
             <div>
                 <img src="assets/images/like.jpg" class="likeImg">
-                <label>Nummer</label>
+                <label><?php echo Article::getLikes($article['id'])?></label>
             </div>
             <label class="dateLabel"><?php echo date("d.m.Y - H:i", strtotime($article['date']))?><br>Thema: <?php echo $article['description'] ?></label>
 

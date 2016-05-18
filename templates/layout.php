@@ -14,10 +14,8 @@
              <a class="home" href="?home=1"><img src="assets/images/home.png"></a>
              <?php if (Session::authenticated()) : ?>
                  <img src="assets/images/user.png" class="userImgLogin">
-                 <label id="profilname" class="userLogin"></label>
-                 <script type="text/javascript">
-                     document.getElementById("profilname").innerHTML = "<?php echo $_SESSION['user']?>";
-                 </script>
+                 <label id="profilname" class="userLogin"><?php echo Session::getuserbyid(Session::getuserid())?></label>
+
                  <div class="tooltip">
                      <a class="logout" href="?logout=1"><img src="assets/images/logout.png"></a>
                      <span class="tooltiptext">Logout</span>

@@ -1,11 +1,10 @@
 <link rel="stylesheet" href="assets/stylesheets/article.css">
 
 
-
   <div class="sideHeaderDiv">
     <label class="sideHeader"><?php echo $article['title'] ?></label>
 
-      <?php if (Session::authenticated() && Session::getuserid()==$article['user_id']): ?>
+      <?php if (Session::authenticated() && (Session::getuserid()==$article['user_id'])): ?>
           <a href="?editOldArticle"><img src="assets/images/edit.jpg" class="userArticleEdit"></a>
       <?php endif ?>
 
@@ -13,20 +12,25 @@
       <label class="owner"><?php echo Session::getuserbyid($article['user_id'])?></label>
   </div>
 
-<form action="index.php?saveComment" method="post" class="article">
+
   <div class="singleArticle">
       <div class="textareaRead">
-          <textbox  ><?php echo $article['text'] ?></textbox>
+          <textbox><?php echo $article['text'] ?></textbox>
       </div>
       <label class="dateLabel"><?php echo date("d.m.Y - H:i", strtotime($article['date']))?></label>
-
-
+      <?php if(Article::likeable(Session::getArticleId(), Session::getuserid())):?>
+        <a href="index.php?like"><button>Gefällt mir</button></a>
+      <?php else :?>
+        <label class="likes">Likes</label>
+      <?php endif ?>
+      <label><?php echo Article::getLikes($article['id'])?></label>
+<form action="index.php?saveComment" method="post" class="article">
     <div class="commments">
 
 
-        <?php if (!empty($comments)) : ?>
+        <?php if (!empty($comments) || Session::authenticated()) : ?>
            <label class="titleComment">Kommentare</label>
-          <?php foreach ($comments as $comment) :?>
+        <?php foreach ($comments as $comment) :?>
 
         <div class="commentsarea">
           <img src="assets/images/user-article.png" class="user-articleImg">
@@ -46,8 +50,8 @@
           <textarea id="textareaComment" name="textareaComment" class="textareaReadComment" placeholder="Füge hier ein Kommentar hinzu..." rows="3"></textarea>
         </div>
 
-        <a href="index.php?saveComment"> <button>Kommentar speichern</button> </a>
-      <?php endif ?>
+          <button>Kommentar speichern</button>
+
     </div>
 
 
