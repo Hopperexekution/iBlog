@@ -24,8 +24,19 @@
 }
 
 .owner{
-    float: right;
+    max-width: 20%;
+    min-width: 20%;
+    overflow: hidden;
     padding-right: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.userArticleBin {
+    border: 0.2px solid rgb(51, 51, 51);
+    border-radius: 5px;
+    padding: 1px;
+    width: 25px;
 }
 
 

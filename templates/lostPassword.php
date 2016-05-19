@@ -12,6 +12,7 @@
             <textarea class="failRegistration" rows="1"> Die Mail konnte nicht zugesandt werden. </textarea>
         </div>
     <?php endif ?>
+
     <?php if(Session::mailfalse()) : ?>
         <div class="infoDiv">
             <span onclick="this.parentElement.style.display='none';">&times;</span>
@@ -21,7 +22,6 @@
 
     <div class="lostPasswordDiv">
         <input id="email" type="text" name="email" placeholder="Email-Adresse">
-
         <button>Kennwort anfragen</button>
     </div>
 </form>

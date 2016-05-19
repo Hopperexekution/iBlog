@@ -83,6 +83,15 @@ class Session {
     public static function getArticleId(){
       return($_SESSION['article_id']);
     }
+    public static function commentempty(){
+      return($_SESSION['comment_empty']===true);
+    }
+    public static function deletesuccess(){
+      return($_SESSION['delete_success']===true);
+    }
+    public static function deleteusersuccess(){
+      return($_SESSION['deleteuser_success']===true);
+    }
 
     public static function logout()
     {
@@ -252,6 +261,62 @@ class Session {
             return "User unbekannt";
       }
       return $user;
+    }
+    public static function getuserimg($mail){
+
+      global $dbh;
+      $stmt = $dbh->prepare("SELECT profilpic FROM user WHERE mail=:mail");
+      $stmt -> execute(array(
+        'mail'=>$mail
+      ));
+      return $stmt->fetchColumn();
+    }
+    public static function deleteUser(){
+      global $dbh;
+
+      $stmt = $dbh->prepare("DELETE FROM user
+          WHERE mail = :mail");
+
+      $stmt->execute(array(
+          'mail'     => Session::getuser()
+      ));
+      $_SESSION['deleteuser_success']=true;
+    }
+    public static function deleteUserArticle(){
+      $id=Session::getuserid();
+
+      global $dbh;
+
+      $stmt = $dbh->prepare("DELETE FROM comment
+          WHERE user_id = :id");
+
+      $stmt->execute(array(
+          'id'     => $id
+      ));
+
+      $stmt = $dbh->prepare("DELETE FROM user_likes_article
+          WHERE user_id = :id");
+
+      $stmt->execute(array(
+          'id'     => $id
+      ));
+
+      $stmt = $dbh->prepare("DELETE FROM article
+          WHERE user_id = :id");
+
+      $stmt->execute(array(
+          'id'     => $id
+      ));
+
+
+      $stmt = $dbh->prepare("DELETE FROM user
+          WHERE mail = :mail");
+
+      $stmt->execute(array(
+          'mail'     => Session::getuser()
+      ));
+
+      $_SESSION['deleteuser_success']=true;
     }
 
 }

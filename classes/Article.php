@@ -85,21 +85,32 @@ class Article {
       $_SESSION['search']="Aktuelle Beiträge";
       global $dbh;
 
-      return $dbh->query("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM theme left join theme_article on theme.id = theme_article.theme_id
- left join article on article.id = theme_article.article_id ORDER BY date DESC")->fetchAll(PDO::FETCH_ASSOC);
+      $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM theme left join theme_article on theme.id = theme_article.theme_id
+ left join article on article.id = theme_article.article_id ORDER BY date DESC");
+      $stmt ->execute();
+ return $stmt ->fetchAll(PDO::FETCH_ASSOC);
   }
   public static function getmyArticles($id)
   {
       global $dbh;
 
-      return $dbh->query("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM theme left join theme_article on theme.id = theme_article.theme_id
- left join article on article.id = theme_article.article_id where article.user_id=$id ORDER BY date DESC")->fetchAll(PDO::FETCH_ASSOC);
+      $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM theme left join theme_article on theme.id = theme_article.theme_id
+ left join article on article.id = theme_article.article_id where article.user_id=:id ORDER BY date DESC");
+      $stmt ->execute(array(
+        'id'=> $id
+      ));
+
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
   public static function getArticle($id)
   {
       global $dbh;
 
-      return $dbh->query("SELECT * FROM article WHERE id=$id")->fetch(PDO::FETCH_ASSOC);
+      $stmt = $dbh->prepare("SELECT * FROM article WHERE id=:id");
+      $stmt->execute(array(
+        'id' => $id
+      ));
+      return $stmt->fetch(PDO::FETCH_ASSOC);
   }
   public static function updateArticle($id, $text)
   {
@@ -215,6 +226,26 @@ public static function likeable($article, $user){
   }else{
       return false;
   }
+}
+public static function deleteArticle($id){
+  global $dbh;
+  $stmt = $dbh->prepare("DELETE FROM user_likes_article WHERE article_id=:id");
+  $stmt->execute(array(
+    'id'=>$id
+  ));
+  $stmt = $dbh->prepare("DELETE FROM theme_article WHERE article_id=:id");
+  $stmt->execute(array(
+    'id'=>$id
+  ));
+  $stmt = $dbh->prepare("DELETE FROM comment WHERE article_id=:id");
+  $stmt->execute(array(
+    'id'=>$id
+  ));
+  $stmt = $dbh->prepare("DELETE FROM article WHERE id=:id");
+  $stmt->execute(array(
+    'id'=>$id
+  ));
+  $_SESSION['delete_success']=true;
 }
 
 

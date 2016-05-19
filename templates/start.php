@@ -18,7 +18,8 @@
         </div>
     </div>
 </form>
-<form action="index.php" method="post" class="start">
+
+<div class="start">
     <?php if(Session::codecorrect() && Session::confirmationtried()) : ?>
         <div class="infoDiv">
             <span onclick="this.parentElement.style.display='none';">&times;</span>
@@ -26,27 +27,31 @@
         </div>
     <?php endif ?>
 
-
+    <?php if(Session::deletesuccess()) : ?>
+        <div class="infoDiv">
+            <span onclick="this.parentElement.style.display='none';">&times;</span>
+            <textarea class="successRegistration" rows="1"> Der Artikel wurde gelöscht. </textarea>
+        </div>
+    <?php endif ?>
 
     <?php if (!empty($articles)) foreach ($articles as $article) :?>
+        <div class="titleDiv">
+            <a href="index.php?article=<?php echo $article['id'] ?>" class="linkArticle">
+                <div class="titleLabelDiv">
+                    <div class="imgUserName">
+                        <img src="data:image/jpeg;base64,"."<?php base64_encode(Session::getuserimg($article['user_id']))?>" class="user-articleImg">
+                        <label id = "<?php echo $article['id'] ?>" class="nameUserArticle"><?php echo Session::getuserbyid($article['user_id']) ?></label>
+                    </div>
+                    <label class="titleLabel"><?php echo $article['title'] ?></label>
+                    
+                    <div class="likeDiv">
+                        <img src="assets/images/like.jpg" class="likeImg">
+                        <label class="likeNumber"><?php echo Article::getLikes($article['id'])?></label>
+                    </div>
+                    <label class="dateLabel"><?php echo date("d.m.Y - H:i", strtotime($article['date']))?><br>Thema: <?php echo $article['description'] ?></label>
 
-    <div class="titleDiv">
-        <a href="index.php?article=<?php echo $article['id'] ?>" class="linkArticle">
-        <div class="titleLabelDiv">
-            <div class="imgUserName">
-                <img src="assets/images/user-article.png" class="user-articleImg">
-                <label id = "<?php echo $article['id'] ?>" class="nameUserArticle"><?php echo Session::getuserbyid($article['user_id']) ?></label>
-            </div>
-            <label class="titleLabel"><?php echo $article['title'] ?></label>
-            <div class="likeDiv">
-                <img src="assets/images/like.jpg" class="likeImg">
-                <label class="likeNumber"><?php echo Article::getLikes($article['id'])?></label>
-            </div>
-            <label class="dateLabel"><?php echo date("d.m.Y - H:i", strtotime($article['date']))?><br>Thema: <?php echo $article['description'] ?></label>
-
+                </div>
+            </a>
         </div>
-        </a>
-        <? endforeach ?>
-
-    </div>
-</form>
+    <? endforeach ?>
+</div>

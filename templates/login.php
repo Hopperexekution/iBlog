@@ -7,16 +7,17 @@
 <form action="index.php?login" method="post" class="login">
 
     <?php if(Session::passwordfalse()) : ?>
-    <div class="infoDiv">
-        <span onclick="this.parentElement.style.display='none';">&times;</span>
-        <textarea class="failRegistration" rows="1"> Email oder Passwort ist falsch. </textarea>
-    </div>
+        <div class="infoDiv">
+            <span onclick="this.parentElement.style.display='none';">&times;</span>
+            <textarea class="failRegistration" rows="1"> Email oder Passwort ist falsch. </textarea>
+        </div>
     <?php endif ?>
+
     <?php if(Session::mailsend()) : ?>
-    <div class="infoDiv">
-        <span onclick="this.parentElement.style.display='none';">&times;</span>
-        <textarea class="successRegistration" rows="1"> Das neue Passwort wurde Ihnen zugesandt. </textarea>
-    </div>
+        <div class="infoDiv">
+            <span onclick="this.parentElement.style.display='none';">&times;</span>
+            <textarea class="successRegistration" rows="1"> Das neue Passwort wurde Ihnen zugesandt. </textarea>
+        </div>
     <?php endif ?>
 
     <div class="loginDiv">

@@ -8,12 +8,12 @@ $template_data = array();
 // handle login
 if (isset($_REQUEST['login']) && isset($_REQUEST['username']) && isset($_REQUEST['password'])) {
     //Freischaltung überprüfen
-    if (!Session::check_credentials($_REQUEST['username'], $_REQUEST['password'])) {
+    if (!Session::check_credentials(htmlspecialchars($_REQUEST['username']), htmlspecialchars($_REQUEST['password']))) {
         $template_data['message'] = 'Login failed!';
         Template::render('login', $template_data);
         session_destroy();
     }
-    if(!Session::passwordfalse() && !Session::userunlocked($_REQUEST['username'])){
+    if(!Session::passwordfalse() && !Session::userunlocked(htmlspecialchars($_REQUEST['username']))){
         $template_data['title'] = 'Anmeldung bestätigen';
         Template::render('register', $template_data);
         unset($_SESSION['confirmation_tried']);
@@ -35,9 +35,9 @@ elseif(isset($_REQUEST['changePassword'])){
     Template::render('changePassword', $template_data);
 }
 elseif(isset($_REQUEST['alterPassword'])){
-    if(Session::check_credentials(Session::getuser(), $_REQUEST['oldpassword'])){
+    if(Session::check_credentials(Session::getuser(), htmlspecialchars($_REQUEST['oldpassword']))){
 
-        if(Session::changePassword($_REQUEST['password'], $_REQUEST['password2'])){
+        if(Session::changePassword(htmlspecialchars($_REQUEST['password']), htmlspecialchars($_REQUEST['password2']))){
             $template_data['title'] = 'Profil';
             Template::render('profil', $template_data);
 
@@ -78,7 +78,7 @@ elseif (isset($_REQUEST['logout'])) {
 }
 
 elseif (isset($_REQUEST['register'])) {
-    Session::create_user($_REQUEST['firstname'],$_REQUEST['lastname'],$_REQUEST['username'],$_REQUEST['password'], $_REQUEST['password2']);
+    Session::create_user(htmlspecialchars($_REQUEST['firstname']),htmlspecialchars($_REQUEST['lastname']),htmlspecialchars($_REQUEST['username']),htmlspecialchars($_REQUEST['password']), htmlspecialchars($_REQUEST['password2']));
     if (Session::passwordfailed()) {
         $template_data['title'] = 'Neues Konto erstellen';
         Template::render('newUser', $template_data);
@@ -92,13 +92,13 @@ elseif (isset($_REQUEST['register'])) {
       Template::render('newUser', $template_data);
       session_destroy();
     }else{
-        Mail::send($_REQUEST['username']);
+        Mail::send(htmlspecialchars($_REQUEST['username']));
         if(Session::mailfailed()===false){
             $template_data['title'] = 'Anmeldung bestätigen';
             Template::render('register', $template_data);
         }else{
             $_SESSION['logged_in'] = false;
-            Session::removeuser($_REQUEST['username']);
+            Session::removeuser(htmlspecialchars($_REQUEST['username']));
             $template_data['title'] = 'Neues Konto erstellen';
             Template::render('newUser', $template_data);
             session_destroy();
@@ -119,7 +119,7 @@ elseif (isset($_REQUEST['editOldArticle'])) {
   Template::render('editOldArticle', $template_data);
 }
 elseif (isset($_REQUEST['updateArticle'])) {
-  Article::updateArticle($_SESSION['article_id'], $_REQUEST['textareaEdit']);
+  Article::updateArticle($_SESSION['article_id'], htmlspecialchars($_REQUEST['widgEditor']));
   $template_data['articles'] = Article::getAll();
   $template_data['title'] = 'Startseite';
   Template::render('start', $template_data);
@@ -153,8 +153,8 @@ elseif (isset($_REQUEST['sendCodeAgain'])){
 }
 
 elseif(isset($_REQUEST['newPassword'])&& isset($_REQUEST['email'])){
-    if(Session::checkmail($_REQUEST['email'])){
-        Mail::sendpassword($_REQUEST['email']);
+    if(Session::checkmail(htmlspecialchars($_REQUEST['email']))){
+        Mail::sendpassword(htmlspecialchars($_REQUEST['email']));
         if(Session::mailfailed()){
             $template_data['title'] = 'Passwort ändern';
             Template::render('lostPassword', $template_data);
@@ -192,31 +192,32 @@ elseif (isset($_REQUEST['saveArticle'])) {
     }
 }
 elseif (isset($_REQUEST['saveComment'])) {
-    Comment::saveComment($_REQUEST['textareaComment']);
+    Comment::saveComment(htmlspecialchars($_REQUEST['textareaComment']));
     $template_data['article']= Article::getArticle($_SESSION['article_id']);
     $template_data['comments']=Comment::getAllComments();
     $template_data['title'] = 'Artikel-Seite';
     Template::render('article', $template_data);
+    unset($_SESSION['comment_empty']);
 
 }elseif(isset($_REQUEST['search'])){
-  $_SESSION['search']="Suche nach \"".$_REQUEST['inputSearch']. "\" in ".$_REQUEST['selectionBox'];
+  $_SESSION['search']="Suche nach \"".htmlspecialchars($_REQUEST['inputSearch']). "\" in ".$_REQUEST['selectionBox'];
   if($_REQUEST['selectionBox']=='Titel'){
-    $template_data['articles'] = Article::searchTitle($_REQUEST['inputSearch']);
+    $template_data['articles'] = Article::searchTitle(htmlspecialchars($_REQUEST['inputSearch']));
     $template_data['title'] = 'Startseite';
     Template::render('start', $template_data);
 
   }elseif($_REQUEST['selectionBox']=='Benutzer'){
-    $template_data['articles'] = Article::searchUser($_REQUEST['inputSearch']);
+    $template_data['articles'] = Article::searchUser(htmlspecialchars($_REQUEST['inputSearch']));
     $template_data['title'] = 'Startseite';
     Template::render('start', $template_data);
 
   }elseif($_REQUEST['selectionBox']=='Thema'){
-    $template_data['articles'] = Article::searchTheme($_REQUEST['inputSearch']);
+    $template_data['articles'] = Article::searchTheme(htmlspecialchars($_REQUEST['inputSearch']));
     $template_data['title'] = 'Startseite';
     Template::render('start', $template_data);
 
   }else{
-    $template_data['articles'] = Article::searchAll($_REQUEST['inputSearch']);
+    $template_data['articles'] = Article::searchAll(htmlspecialchars($_REQUEST['inputSearch']));
     $template_data['title'] = 'Startseite';
     Template::render('start', $template_data);
   }
@@ -232,6 +233,61 @@ elseif (isset($_REQUEST['saveComment'])) {
 elseif (isset($_REQUEST['newPic'])){
     $template_data['title'] = 'Neues Foto';
     Template::render('newPicture', $template_data);
+}elseif(isset($_REQUEST['uploadPic'])){
+  if(is_uploaded_file($_FILES['image']['tmp_name'])) {
+    echo "upload";
+    $tmpname = $_FILES['image']['tmp_name'];
+    $type = $_FILES['image']['type'];
+    $hndFile = fopen($tmpname, "r");
+    $data = addslashes(fread($hndFile, filesize($tmpname)));
+    global $dbh;
+    $stmt = $dbh->prepare("UPDATE user SET profilpic=:pic WHERE id=:id");
+    $stmt->execute(array(
+      'pic'=>$data,
+      'id' =>Session::getuserid()
+    ));
+  }
+
+}elseif(isset($_REQUEST['deleteArticle'])){
+  Article::deleteArticle($_SESSION['article_id']);
+  if(Session::deleteSuccess()){
+    $template_data['articles'] = Article::getAll();
+    $template_data['title'] = 'Startseite';
+    Template::render('start', $template_data);
+    unset($_SESSION['delete_success']);
+  }else{
+    $template_data['article']= Article::getArticle($_SESSION['article_id']);
+    $template_data['comments']=Comment::getAllComments();
+    $template_data['title'] = 'Artikel-Seite';
+    Template::render('article', $template_data);
+  }
+}elseif(isset($_REQUEST['deleteUser'])){
+    Session::deleteUser();
+
+  if(Session::deleteusersuccess()){
+    Session::logout();
+    $template_data['articles'] = Article::getAll();
+    $template_data['title'] = 'Startseite';
+    Template::render('start', $template_data);
+    unset($_SESSION['deleteuser_success']);
+  }else{
+    $template_data['title'] = 'Profil';
+    Template::render('profil', $template_data);
+  }
+}
+elseif(isset($_REQUEST['deleteUserArticle'])){
+    Session::deleteUserArticle();
+
+    if(Session::deleteusersuccess()){
+        Session::logout();
+        $template_data['articles'] = Article::getAll();
+        $template_data['title'] = 'Startseite';
+        Template::render('start', $template_data);
+        unset($_SESSION['deleteuser_success']);
+    }else{
+        $template_data['title'] = 'Profil';
+        Template::render('profil', $template_data);
+    }
 }
 
 elseif (Session::authenticated()) {

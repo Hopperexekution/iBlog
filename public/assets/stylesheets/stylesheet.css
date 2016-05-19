@@ -19,9 +19,10 @@ html,body{
 
 header{
     text-align:center;
-    position:relative;
+    /*position:relative;*/
     background-color: rgb(51,51,51);
-    color: white
+    color: white;
+    max-height: 45px;
 }
 
 main{
@@ -45,7 +46,9 @@ button:hover{
 /*Überschriften*/
 h1 {
     margin-bottom: 0;
-    margin-top: -15px;
+    margin-top: -25px;
+    /*margin-bottom: 0;
+    margin-top: -15px;*/
 }
 
 h2 {
@@ -136,16 +139,19 @@ span {
     background-color: rgb(51, 51, 51);
     border-radius: 5px;
     color: white;
-    margin-bottom: -12px;
+    /*margin-bottom: -12px;*/
     padding: 5px;
+    display: flex;
+    /*margin-top: 25px;*/
 }
 
-.start .sideHeaderDiv{
+/*.start .sideHeaderDiv{
     display: flex;
-    margin-top: -12px;
-}
+    /*margin-top: -12px;
+}*/
 
 .sideHeader{
+    max-width: 70%;
     min-width: 70%;
     overflow: hidden;
     padding-left: 25px;

@@ -12,6 +12,7 @@
             <textarea class="failRegistration" rows="1">Sie haben ein falsches Kennwort eingegeben.</textarea>
         </div>
     <?php endif ?>
+
     <?php if(!(Session::passwordchanged()) && Session::passwordchangetried()) : ?>
         <div class="infoDiv">
             <span onclick="this.parentElement.style.display='none';">&times;</span>

@@ -5,7 +5,8 @@
      <meta charset="utf-8">
      <link rel="stylesheet" href="assets/stylesheets/stylesheet.css">
      <link rel="stylesheet" href="assets/stylesheets/header.css">
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+     <link rel="stylesheet" href="widgEditor/css/widgEditor.css">
+     <script src="widgEditor/scripts/widgEditor.js"></script>
  </head>
  <body>
      <div class="page">
@@ -13,7 +14,7 @@
              <h1>iBlog</h1>
              <a class="home" href="?home=1"><img src="assets/images/home.png"></a>
              <?php if (Session::authenticated()) : ?>
-                 <img src="assets/images/user.png" class="userImgLogin">
+                 <img src="data:image/jpeg;base64,"."<?php base64_encode( Session::getuserimg(Session::getuser()))?>" class="userImgLogin">
                  <label id="profilname" class="userLogin"><?php echo Session::getuserbyid(Session::getuserid())?></label>
 
                  <div class="tooltip">
@@ -36,9 +37,8 @@
                      <span class="tooltiptext">Login</span>
                  </div>
              <?php endif ?>
-
-
          </header>
+
          <main>
              <?= $content_for_layout ?>
          </main>
