@@ -1,0 +1,43 @@
+/*Überschriften für diese Seite*/
+
+.sideHeaderNewPicDiv {
+    background-color: rgb(51, 51, 51);
+    border-radius: 5px;
+    color: white;
+    margin-bottom: 30px;
+    padding: 5px;
+    display: flex;
+    margin-top: 25px;
+}
+
+.sideHeaderNewPic{
+    max-width: 70%;
+    min-width: 70%;
+    overflow: hidden;
+    padding-left: 25px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.newPicImg{
+    border-radius: 5px;
+    height: 90px;
+    margin-left: 5px;
+}
+
+.buttonUpload {
+    background-color: white;
+    border: 0.2px solid rgb(51, 51, 51);
+    border-radius: 5px;
+    height: 30px;
+}
+
+.failImg{
+    border: 1px solid;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 2px;
+    resize: none;
+    width: 510px;
+    color: red;
+}

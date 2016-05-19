@@ -1,5 +1,7 @@
-<div class="sideHeaderDiv">
-    <label class="sideHeader">Eigene Beiträge</label>
+<link rel="stylesheet" href="assets/stylesheets/files.css">
+
+<div class="sideHeaderFilesDiv">
+    <label class="sideHeaderFiles">Eigene Beiträge</label>
 </div>
 
 <?php if (!empty($myarticles)) foreach ($myarticles as $article) :?>
@@ -8,7 +10,7 @@
       <a href="index.php?article=<?php echo $article['id'] ?>" class="linkArticle">
           <div class="titleLabelDiv">
               <div class="imgUserName">
-                  <img src="assets/images/user-article.png" class="user-articleImg">
+                  <img src="<?php echo Session::getpicext($article['user_id'])?>" class="user-articleImg">
                   <label id = "<?php echo $article['id'] ?>" class="nameUserArticle"><?php echo Session::getuserbyid($article['user_id']) ?></label>
               </div>
               <label class="titleLabel"><?php echo $article['title'] ?></label>

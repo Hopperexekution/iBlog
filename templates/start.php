@@ -39,7 +39,7 @@
             <a href="index.php?article=<?php echo $article['id'] ?>" class="linkArticle">
                 <div class="titleLabelDiv">
                     <div class="imgUserName">
-                        <img src="data:image/jpeg;base64,"."<?php base64_encode(Session::getuserimg($article['user_id']))?>" class="user-articleImg">
+                        <img src="<?php echo Session::getpicext($article['user_id'])?>" class="user-articleImg">
                         <label id = "<?php echo $article['id'] ?>" class="nameUserArticle"><?php echo Session::getuserbyid($article['user_id']) ?></label>
                     </div>
                     <label class="titleLabel"><?php echo $article['title'] ?></label>

@@ -1,4 +1,5 @@
-﻿<?php
+﻿
+<?php
 
 class Session {
     public static function check_credentials($mail, $password)
@@ -76,6 +77,12 @@ class Session {
     }
     public static function inputfalse(){
       return(isset($_SESSION['error_input']));
+    }
+    public static function uploadfailed(){
+      return(isset($_SESSION['uploadfailed']));
+    }
+    public static function uploadfailedMsg(){
+      return ($_SESSION['uploadfailed']);
     }
     public static function searched(){
       return($_SESSION['search']);
@@ -262,14 +269,18 @@ class Session {
       }
       return $user;
     }
-    public static function getuserimg($mail){
+    public static function getuserimg($id){
 
       global $dbh;
-      $stmt = $dbh->prepare("SELECT profilpic FROM user WHERE mail=:mail");
+      $stmt = $dbh->prepare("SELECT imgdata, imgtype FROM image WHERE user_id=:id");
       $stmt -> execute(array(
-        'mail'=>$mail
+        'id'=>$id
       ));
-      return $stmt->fetchColumn();
+
+      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+       return $result['imgdata'];
     }
     public static function deleteUser(){
       global $dbh;
@@ -318,5 +329,54 @@ class Session {
 
       $_SESSION['deleteuser_success']=true;
     }
+    public static function savePic(){
+      if(array_key_exists('datei', $_FILES)) {
+      $filepath = $_SESSION['workingdirectory']."/images/profilepics/";
+      $filename = pathinfo($_FILES['datei']['name'], PATHINFO_FILENAME);
+      $extension = strtolower(pathinfo($_FILES['datei']['name'], PATHINFO_EXTENSION));
+
+      $allowed_extensions = array('png', 'jpg', 'jpeg', 'gif');
+      if(!in_array($extension, $allowed_extensions)) {
+         $_SESSION['uploadfailed']="Ungültige Dateiendung. Nur png, jpg, jpeg und gif-Dateien sind erlaubt";
+       }else{
+         $max_size = 10*1024*1024; //10 MB
+         if($_FILES['datei']['size'] > $max_size) {
+            $_SESSION['uploadfailed']="Bitte keine Dateien größer 10MB hochladen";
+          }else{
+            $allowed_types = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
+            $detected_type = exif_imagetype($_FILES['datei']['tmp_name']);
+            if(!in_array($detected_type, $allowed_types)) {
+              $_SESSION['uploadfailed']="Nur der Upload von Bilddateien ist gestattet";
+             }else{
+               $new_path = $filepath.Session::getuserid().'.'.$extension;
+               if (Session::getpicext(Session::getuserid())!="assets/images/user.png"){
+                 unlink($_SESSION['workingdirectory']."/".Session::getpicext(Session::getuserid()));
+               }
+               move_uploaded_file($_FILES['datei']['tmp_name'],$new_path);
+             }
+           }
+         }
+      }
+    }
+    public static function getpicext($user_id){
+      if(file_exists($_SESSION['workingdirectory']."/images/profilepics/".$user_id.".png"))
+      {
+        return "images/profilepics/".$user_id.".png";
+      }
+      elseif (file_exists($_SESSION['workingdirectory']."/images/profilepics/".$user_id.".jpeg")) {
+        return "images/profilepics/".$user_id.".jpeg";
+      }
+      elseif (file_exists($_SESSION['workingdirectory']."/images/profilepics/".$user_id.".gif")) {
+        return "images/profilepics/".$user_id.".gif";
+      }
+      elseif (file_exists($_SESSION['workingdirectory']."/images/profilepics/".$user_id.".jpg")) {
+        return "images/profilepics/".$user_id.".jpg";
+      }
+      else{
+        return "assets/images/user.png";
+      }
+    }
+
+
 
 }

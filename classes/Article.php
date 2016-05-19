@@ -24,6 +24,8 @@ class Article {
       }
 
       if(!isset($_SESSION['error_input'])){
+          $text = str_replace("&lt;p&gt;", "", $text);
+          $text = str_replace("&lt;/p&gt;", "", $text);
     global $dbh;
 
     $stmt = $dbh->prepare("INSERT INTO article (title, text, user_id) VALUES (:title, :text, :user_id)");
@@ -114,13 +116,19 @@ class Article {
   }
   public static function updateArticle($id, $text)
   {
-      global $dbh;
+      if ($text=="") {
+          $_SESSION['error_input'] .= "Bitte keinen leeren Beitrag speichern.\n";
+      } else{
+          $text = str_replace("&lt;p&gt;", "", $text);
+          $text = str_replace("&lt;/p&gt;", "", $text);
+          global $dbh;
 
       $stmt = $dbh->prepare("UPDATE article SET text=:text WHERE id=:id");
       $stmt->execute(array(
-          'text'     => $text,
-          'id'   => $id
+          'text' => $text,
+          'id' => $id
       ));
+    }
   }
     public static function checkTitle($title){
         global $dbh;

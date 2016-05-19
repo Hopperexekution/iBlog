@@ -1,7 +1,7 @@
 ﻿/************************Header************************/
 /* Home Button*/
 a.home {
-    left: 0px;
+    left: 30px;
     position: absolute;
     top: -7px;
 }
@@ -17,14 +17,14 @@ a.home img:hover{
 /*User in Leiste */
 .userImgLogin{
     height: 25px;
-    left: 60px;
+    left: 80px;
     position: absolute;
     top: 6px;
 }
 
 .userLogin{
     font-size: 15px;
-    left: 95px;
+    left: 110px;
     max-width: 35%;
     overflow: hidden;
     position: absolute;
@@ -35,8 +35,8 @@ a.home img:hover{
 
 /*Setting-Icon*/
 a.setting{
-    position:absolute;
-    right: 60px;
+    position: absolute;
+    right: 100px;
     top: -2px;
 }
 
@@ -49,10 +49,10 @@ a.setting img{
     float: right;
     height: 46px;
     position: absolute;
-    right: 60px;
+    right: 100px;
+    text-align: right;
     top: 0;
     width: 41px;
-    text-align: right;
 }
 
 /*Einstellungen - Submenu*/
@@ -78,9 +78,9 @@ li:hover .subMenu{
 
 /*Logout-Button*/
 a.logout{
-    position:absolute;
-    right:25px;
-    top:3px
+    position: absolute;
+    right: 65px;
+    top: 3px;
 }
 
 a.logout img{
@@ -105,7 +105,7 @@ a.logout img:hover{
     color: #c1cdc1;
     padding: 5px 0;
     position: absolute;
-    right: -36px;
+    right: 0;
     text-align: center;
     top: 5px;
     visibility: hidden;
@@ -118,9 +118,9 @@ a.logout img:hover{
 
 /* Login Button*/
 a.login {
-    right: 20px;
     position: absolute;
-    top: 1px;
+    right: 65px;
+    top: 3px;
 }
 
 a.login img {

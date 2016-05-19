@@ -11,10 +11,10 @@
  <body>
      <div class="page">
          <header>
-             <h1>iBlog</h1>
+             <h1 class="sideHeading">iBlog</h1>
              <a class="home" href="?home=1"><img src="assets/images/home.png"></a>
              <?php if (Session::authenticated()) : ?>
-                 <img src="data:image/jpeg;base64,"."<?php base64_encode( Session::getuserimg(Session::getuser()))?>" class="userImgLogin">
+                 <img src="<?php echo Session::getpicext(Session::getuserid())?>" class="userImgLogin">
                  <label id="profilname" class="userLogin"><?php echo Session::getuserbyid(Session::getuserid())?></label>
 
                  <div class="tooltip">

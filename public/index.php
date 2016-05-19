@@ -4,6 +4,7 @@ require_once '../config.php';
 
 // initialize variables
 $template_data = array();
+$_SESSION['workingdirectory']= getcwd();
 
 // handle login
 if (isset($_REQUEST['login']) && isset($_REQUEST['username']) && isset($_REQUEST['password'])) {
@@ -22,7 +23,6 @@ if (isset($_REQUEST['login']) && isset($_REQUEST['username']) && isset($_REQUEST
         $template_data['title'] = 'Hauptseite';
         Template::render('start', $template_data);
     }
-    //Hier muss noch abgefangen werden, wenn beide Felder leer sind und trotzdem auf login geklickt wird
 }
 
 elseif(isset($_REQUEST['lostPassword'])){
@@ -119,14 +119,19 @@ elseif (isset($_REQUEST['editOldArticle'])) {
   Template::render('editOldArticle', $template_data);
 }
 elseif (isset($_REQUEST['updateArticle'])) {
-  Article::updateArticle($_SESSION['article_id'], htmlspecialchars($_REQUEST['widgEditor']));
-  $template_data['articles'] = Article::getAll();
-  $template_data['title'] = 'Startseite';
-  Template::render('start', $template_data);
+    Article::updateArticle($_SESSION['article_id'], htmlspecialchars($_REQUEST['widgEditor']));
+    if (Session::inputfalse()) {
+        $template_data['article']= Article::getArticle($_SESSION['article_id']);
+        $template_data['title'] = 'Bearbeiten-Artikel-Seite';
+        Template::render('editOldArticle', $template_data);
+        unset($_SESSION['error_input']);
+    } else{
+        $template_data['articles'] = Article::getAll();
+        $template_data['title'] = 'Startseite';
+        Template::render('start', $template_data);
+    }
 }
 elseif (isset($_REQUEST['confirm'])){
-
-    //Hier andere Meldung anzeigen... viellecht grüne span box?
     if(Mail::checkcode($_REQUEST['code'])){
 //Code korrekt Anmeldung abgeschlossen
         $_SESSION['logged_in'] = true;
@@ -180,7 +185,7 @@ elseif (isset($_REQUEST['newArticle'])) {
     Template::render('newArticle', $template_data);
 }
 elseif (isset($_REQUEST['saveArticle'])) {
-    Article::saveArticle(htmlspecialchars($_REQUEST['title']), htmlspecialchars($_REQUEST['theme']), htmlspecialchars($_REQUEST['textareaEdit']));
+    Article::saveArticle(htmlspecialchars($_REQUEST['title']), htmlspecialchars($_REQUEST['theme']), htmlspecialchars($_REQUEST['widgEditor']));
     if(Session::inputfalse()) {
         $template_data['title'] = 'Neuer Beitrag';
         Template::render('newArticle', $template_data);
@@ -234,19 +239,17 @@ elseif (isset($_REQUEST['newPic'])){
     $template_data['title'] = 'Neues Foto';
     Template::render('newPicture', $template_data);
 }elseif(isset($_REQUEST['uploadPic'])){
-  if(is_uploaded_file($_FILES['image']['tmp_name'])) {
-    echo "upload";
-    $tmpname = $_FILES['image']['tmp_name'];
-    $type = $_FILES['image']['type'];
-    $hndFile = fopen($tmpname, "r");
-    $data = addslashes(fread($hndFile, filesize($tmpname)));
-    global $dbh;
-    $stmt = $dbh->prepare("UPDATE user SET profilpic=:pic WHERE id=:id");
-    $stmt->execute(array(
-      'pic'=>$data,
-      'id' =>Session::getuserid()
-    ));
-  }
+    Session::savePic();
+    if(Session::uploadfailed()){
+        $template_data['title'] = 'Neues Foto';
+        Template::render('newPicture', $template_data);
+    }else{
+        $template_data['articles'] = Article::getAll();
+        $template_data['title'] = 'Startseite';
+        Template::render('start', $template_data);
+        header("Refresh:0; url=index.php?home=1");
+    }
+    unset($_SESSION['uploadfailed']);
 
 }elseif(isset($_REQUEST['deleteArticle'])){
   Article::deleteArticle($_SESSION['article_id']);

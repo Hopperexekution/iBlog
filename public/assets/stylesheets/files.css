@@ -1,5 +1,6 @@
 /*Überschriften für diese Seite*/
-.sideHeaderOldArticleDiv {
+
+.sideHeaderFilesDiv {
     background-color: rgb(51, 51, 51);
     border-radius: 5px;
     color: white;
@@ -9,7 +10,7 @@
     margin-top: 25px;
 }
 
-.sideHeaderOldArticle{
+.sideHeaderFiles{
     max-width: 70%;
     min-width: 70%;
     overflow: hidden;
@@ -17,4 +18,3 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
