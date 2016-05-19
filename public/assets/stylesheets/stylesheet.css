@@ -3,6 +3,13 @@
     font-family:sans-serif;
 }
 
+/*@media screen and (max-height: 700px) {
+    .reframe { max-width: 760px }
+    body{
+        min-width: 600px;
+    }
+}*/
+
 div.page{
     background-color: white;
     margin: auto;
@@ -22,7 +29,8 @@ header{
     /*position:relative;*/
     background-color: rgb(51,51,51);
     color: white;
-    max-height: 45px;
+    min-height: 50px;
+    max-height: 50px;
 }
 
 main{
@@ -151,8 +159,8 @@ span {
 }*/
 
 .sideHeader{
-    max-width: 70%;
-    min-width: 70%;
+    max-width: 60%;
+    min-width: 60%;
     overflow: hidden;
     padding-left: 25px;
     text-overflow: ellipsis;
@@ -198,8 +206,8 @@ span {
 }
 
 .imgUserName{
-    max-width: 120px;
-    min-width: 120px;
+    max-width: 10%;
+    min-width: 10%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -262,7 +270,8 @@ span {
     float: right;
     font-size: 10px;
     margin-left: 10px;
-    max-width: 130px;
+    max-width: 10%;
+    min-width: 10%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

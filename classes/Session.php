@@ -283,7 +283,11 @@ class Session {
        return $result['imgdata'];
     }
     public static function deleteUser(){
-      global $dbh;
+        if (Session::getpicext(Session::getuserid())!="assets/images/user.png"){
+            unlink($_SESSION['workingdirectory']."/".Session::getpicext(Session::getuserid()));
+        }
+
+        global $dbh;
 
       $stmt = $dbh->prepare("DELETE FROM user
           WHERE mail = :mail");
@@ -293,8 +297,13 @@ class Session {
       ));
       $_SESSION['deleteuser_success']=true;
     }
+
     public static function deleteUserArticle(){
-      $id=Session::getuserid();
+        if (Session::getpicext(Session::getuserid())!="assets/images/user.png"){
+            unlink($_SESSION['workingdirectory']."/".Session::getpicext(Session::getuserid()));
+        }
+
+        $id=Session::getuserid();
 
       global $dbh;
 
