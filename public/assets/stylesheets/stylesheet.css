@@ -3,12 +3,13 @@
     font-family:sans-serif;
 }
 
-/*@media screen and (max-height: 700px) {
-    .reframe { max-width: 760px }
-    body{
-        min-width: 600px;
+@media only screen and (max-width: 1050px) {
+    html, body, header{
+        min-width: 1050px;
+        max-width: 1050px;
+        float: none;
     }
-}*/
+}
 
 div.page{
     background-color: white;
@@ -159,8 +160,8 @@ span {
 }*/
 
 .sideHeader{
-    max-width: 60%;
-    min-width: 60%;
+    max-width: 50%;
+    min-width: 50%;
     overflow: hidden;
     padding-left: 25px;
     text-overflow: ellipsis;
