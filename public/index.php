@@ -45,6 +45,7 @@ elseif(isset($_REQUEST['alterPassword'])){
         }else{
             $template_data['title'] = 'Passwort ändern';
             Template::render('changePassword', $template_data);
+            unset($_SESSION['password_to_short']);
 
         }
     }else{

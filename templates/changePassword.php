@@ -1,4 +1,7 @@
-﻿<link rel="stylesheet" href="assets/stylesheets/changePassword.css">
+<!--
+  Über dieses Template erhält der Benutzer die Möglichkeit, sein Passwort zu ändern
+-->
+<link rel="stylesheet" href="assets/stylesheets/changePassword.css">
 
 <div class="sideHeaderDiv">
     <label class="sideHeader">Passwort ändern</label>
@@ -6,6 +9,9 @@
 
 <form action="index.php?alterPassword" method="post" class="changePassword">
 
+  <!--
+    Anzeigen von Fehlermeldungen, wenn beispielsweise das alte Passwort falsch eingegeben wurde
+  -->
     <?php if(Session::passwordfalse()) : ?>
         <div class="infoDiv">
             <span onclick="this.parentElement.style.display='none';">&times;</span>
@@ -13,16 +19,23 @@
         </div>
     <?php endif ?>
 
-    <?php if(!(Session::passwordchanged()) && Session::passwordchangetried()) : ?>
+    <?php if(!(Session::passwordchanged()) && Session::passwordchangetried()&&!(Session::passwordtoshort())) : ?>
         <div class="infoDiv">
             <span onclick="this.parentElement.style.display='none';">&times;</span>
             <textarea class="failRegistration" rows="2">Bitte überprüfen Sie die Eingaben Ihres neuen Passworts.</textarea>
         </div>
     <?php endif ?>
 
+    <?php if(Session::passwordtoshort()) : ?>
+        <div class="infoDiv">
+            <span onclick="this.parentElement.style.display='none';">&times;</span>
+            <textarea class="failRegistration" rows="1">Das Passwort muss mind. 8 Zeichen lang sein.</textarea>
+        </div>
+    <?php endif ?>
+
     <div class="changePasswordDiv">
         <input id="oldpassword" type="password" name="oldpassword" placeholder="Passwort">
-        <input id="password" type="password" name="password" placeholder="Neues Passwort">
+        <input id="password" type="password" name="password" placeholder="Neues Passwort (mind. 8 Zeichen)">
         <input id="password2" type="password" name="password2" placeholder="Neues Passwort wiederholen">
     </div>
 

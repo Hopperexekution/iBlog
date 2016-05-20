@@ -33,72 +33,7 @@ class Session {
       }
     }
 
-    public static function mailfailed() {
-        return ($_SESSION['mail_failed'] === true);
-    }
 
-    public static function authenticated()
-    {
-        return ($_SESSION['logged_in'] === true);
-    }
-
-    public static function codecorrect() {
-        return ($_SESSION['code_correct'] === true);
-    }
-
-    public static function passwordfailed() {
-        return ($_SESSION['password_fail'] === true);
-    }
-
-    public static function passwordfalse() {
-        return ($_SESSION['password_false'] === true);
-    }
-
-    public static function userexists() {
-        return ($_SESSION['user_exists'] === true);
-    }
-    public static function getuser(){
-      return $_SESSION['user'];
-    }
-    public static function mailfalse(){
-      return ($_SESSION['mail_false']===true);
-    }
-    public static function passwordchanged(){
-      return ($_SESSION['password_changed']===true);
-    }
-    public static function passwordchangetried(){
-      return ($_SESSION['password_change_tried']===true);
-    }
-    public static function confirmationtried(){
-      return($_SESSION['confirmation_tried']===true);
-    }
-    public static function mailsend(){
-      return($_SESSION['mail_send']===true);
-    }
-    public static function inputfalse(){
-      return(isset($_SESSION['error_input']));
-    }
-    public static function uploadfailed(){
-      return(isset($_SESSION['uploadfailed']));
-    }
-    public static function uploadfailedMsg(){
-      return ($_SESSION['uploadfailed']);
-    }
-    public static function searched(){
-      return($_SESSION['search']);
-    }
-    public static function getArticleId(){
-      return($_SESSION['article_id']);
-    }
-    public static function commentempty(){
-      return($_SESSION['comment_empty']===true);
-    }
-    public static function deletesuccess(){
-      return($_SESSION['delete_success']===true);
-    }
-    public static function deleteusersuccess(){
-      return($_SESSION['deleteuser_success']===true);
-    }
 
     public static function logout()
     {
@@ -110,6 +45,10 @@ class Session {
 
         // create new session_id
         session_regenerate_id(true);
+
+        ?><script language="JavaScript" type="text/javascript">
+        setTimeout("location.href='index.php?home=1'", 1); //1 Millisekunde
+        </script> <?
     }
     public function removeuser($mail){
       global $dbh;
@@ -174,17 +113,22 @@ class Session {
     public function changePassword($password, $password2){
       $_SESSION['password_change_tried']=true;
       if($password == $password2&&!empty($password)){
-        global $dbh;
-        $hash = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $dbh->prepare("UPDATE user SET password=:password
-            WHERE mail = :mail");
+        if(strlen($password)>7){
+          global $dbh;
+          $hash = password_hash($password, PASSWORD_DEFAULT);
+          $stmt = $dbh->prepare("UPDATE user SET password=:password
+              WHERE mail = :mail");
 
-        $stmt->execute(array(
-            'password'     => $hash,
-            'mail'     => Session::getuser()
-          ));
-        $_SESSION['password_changed']=true;
-        return true;
+              $stmt->execute(array(
+                'password'     => $hash,
+                'mail'     => Session::getuser()
+              ));
+          $_SESSION['password_changed']=true;
+          return true;
+        }else{
+          $_SESSION['password_to_short']=true;
+          return false;
+        }
       }else{
         $_SESSION['password_changed']=false;
         return false;
@@ -204,8 +148,11 @@ class Session {
       if(empty($mail)){
         $_SESSION['error_input'] .= "Bitte eine gültige Mailadresse angeben.\n";
       }
-      if(empty($mail)){
+      if(empty($password)){
         $_SESSION['error_input'] .= "Bitte ein Passwort angeben.\n";
+      }
+      if(strlen($password)<8){
+        $_SESSION['error_input'] .= "Das Passwort muss mind. 8 Zeichen lang sein.\n";
       }
       if(!isset($_SESSION['error_input'])){
         if (!Session::checkmail($mail)) {  // user does not yet exists, create it
@@ -390,6 +337,75 @@ class Session {
       if (Session::getpicext(Session::getuserid())!="images/profilepics/user.png"){
         unlink($_SESSION['workingdirectory']."/".Session::getpicext(Session::getuserid()));
       }
+    }
+    public static function mailfailed() {
+        return ($_SESSION['mail_failed'] === true);
+    }
+
+    public static function authenticated()
+    {
+        return ($_SESSION['logged_in'] === true);
+    }
+
+    public static function codecorrect() {
+        return ($_SESSION['code_correct'] === true);
+    }
+
+    public static function passwordfailed() {
+        return ($_SESSION['password_fail'] === true);
+    }
+
+    public static function passwordfalse() {
+        return ($_SESSION['password_false'] === true);
+    }
+
+    public static function userexists() {
+        return ($_SESSION['user_exists'] === true);
+    }
+    public static function getuser(){
+      return $_SESSION['user'];
+    }
+    public static function mailfalse(){
+      return ($_SESSION['mail_false']===true);
+    }
+    public static function passwordchanged(){
+      return ($_SESSION['password_changed']===true);
+    }
+    public static function passwordchangetried(){
+      return ($_SESSION['password_change_tried']===true);
+    }
+    public static function passwordtoshort(){
+      return ($_SESSION['password_to_short']===true);
+    }
+    public static function confirmationtried(){
+      return($_SESSION['confirmation_tried']===true);
+    }
+    public static function mailsend(){
+      return($_SESSION['mail_send']===true);
+    }
+    public static function inputfalse(){
+      return(isset($_SESSION['error_input']));
+    }
+    public static function uploadfailed(){
+      return(isset($_SESSION['uploadfailed']));
+    }
+    public static function uploadfailedMsg(){
+      return ($_SESSION['uploadfailed']);
+    }
+    public static function searched(){
+      return($_SESSION['search']);
+    }
+    public static function getArticleId(){
+      return($_SESSION['article_id']);
+    }
+    public static function commentempty(){
+      return($_SESSION['comment_empty']===true);
+    }
+    public static function deletesuccess(){
+      return($_SESSION['delete_success']===true);
+    }
+    public static function deleteusersuccess(){
+      return($_SESSION['deleteuser_success']===true);
     }
 
 

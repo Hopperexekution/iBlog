@@ -38,7 +38,7 @@
         <input id="firstname" type="text" name="firstname" placeholder="Vorname" value=<?php echo $_REQUEST['firstname']?>>
         <input id="lastname" type="text" name="lastname" placeholder="Nachname" value=<?php echo $_REQUEST['lastname']?>>
         <input id="username" type="text" name="username" placeholder="Email-Adresse" value=<?php echo $_REQUEST['username']?>>
-        <input id="password" type="password" name="password" placeholder="Passwort">
+        <input id="password" type="password" name="password" placeholder="Passwort (mind. 8 Zeichen)">
         <input id="password2" type="password" name="password2" placeholder="Passwort wiederholen">
     </div>
     <button>Registrieren</button>
