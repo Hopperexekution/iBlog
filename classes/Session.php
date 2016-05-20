@@ -283,7 +283,7 @@ class Session {
        return $result['imgdata'];
     }
     public static function deleteUser(){
-        if (Session::getpicext(Session::getuserid())!="assets/images/user.png"){
+        if (Session::getpicext(Session::getuserid())!="images/profilepics/user.png"){
             unlink($_SESSION['workingdirectory']."/".Session::getpicext(Session::getuserid()));
         }
 
@@ -299,8 +299,9 @@ class Session {
     }
 
     public static function deleteUserArticle(){
-        if (Session::getpicext(Session::getuserid())!="assets/images/user.png"){
-            unlink($_SESSION['workingdirectory']."/".Session::getpicext(Session::getuserid()));
+      $picpath = Session::getpicext(Session::getuserid());
+        if ($picpath!="images/profilepics/user.png"){
+            unlink($_SESSION['workingdirectory']."/".$picpath);
         }
 
         $id=Session::getuserid();
@@ -358,7 +359,7 @@ class Session {
               $_SESSION['uploadfailed']="Nur der Upload von Bilddateien ist gestattet";
              }else{
                $new_path = $filepath.Session::getuserid().'.'.$extension;
-               if (Session::getpicext(Session::getuserid())!="assets/images/user.png"){
+               if (Session::getpicext(Session::getuserid())!="images/profilepics/user.png"){
                  unlink($_SESSION['workingdirectory']."/".Session::getpicext(Session::getuserid()));
                }
                move_uploaded_file($_FILES['datei']['tmp_name'],$new_path);

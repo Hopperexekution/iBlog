@@ -5,6 +5,7 @@
 class Mail{
 
   public static function send($mail){
+    header("Content-Type: text/html; charset=utf-8");
     $to = $mail;
     $subject = 'Freischaltung Ihres iBlog-Accounts';
     $code = Mail::generatecode($mail);
@@ -12,7 +13,16 @@ class Mail{
                 \nGeben Sie bitte den folgenden Bestätigungscode ein, um Ihre Anmeldung abzuschließen.
                 \n " .Mail::generatecode($mail)."
                 \nMit freundlichen Grüßen\nIhr iBlog-Team";
-    $success =  mail ( $to ,  $subject ,  $message );
+
+    $headers   = array();
+    $headers[] = "MIME-Version: 1.0";
+    $headers[] = "Content-type: text/plain; charset=utf-8";
+    $headers[] = "From: php.iBlog@gmail.com";
+    $headers[] = "Reply-To: php.iBlog@gmail.com";
+    $headers[] = "Subject: {$subject}";
+    $headers[] = "X-Mailer: PHP/".phpversion();
+
+    $success =  mail ( $to ,  $subject ,  $message, implode("\r\n",$headers) );
     $_SESSION['mail_failed'] = !$success;
     $_SESSION['mail_send'] = $success;
   }
@@ -24,7 +34,16 @@ class Mail{
                 \nWir empfehlen, das Passwort zeitnah zu ändern.
                 \n " .Mail::generatepassword($mail)."
                 \nMit freundlichen Grüßen\nIhr iBlog-Team";
-    $success =  mail ( $to ,  $subject ,  $message );
+
+    $headers   = array();
+    $headers[] = "MIME-Version: 1.0";
+    $headers[] = "Content-type: text/plain; charset=utf-8";
+    $headers[] = "From: php.iBlog@gmail.com";
+    $headers[] = "Reply-To: php.iBlog@gmail.com";
+    $headers[] = "Subject: {$subject}";
+    $headers[] = "X-Mailer: PHP/".phpversion();
+
+    $success =  mail ( $to ,  $subject ,  $message, implode("\r\n",$headers) );
     $_SESSION['mail_failed'] = !$success;
     $_SESSION['mail_send'] = $success;
   }

@@ -1,6 +1,7 @@
 ﻿<?php
 
 require_once '../config.php';
+header("Content-Type: text/html; charset=utf-8");
 
 // initialize variables
 $template_data = array();
