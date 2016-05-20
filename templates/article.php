@@ -58,6 +58,3 @@
         <?php endif ?>
       </form>
   </div>
-
-
-
