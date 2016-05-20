@@ -382,7 +382,7 @@ class Session {
         return "images/profilepics/".$user_id.".jpg";
       }
       else{
-        return "assets/images/user.png";
+        return "images/profilepics/user.png";
       }
     }
 
