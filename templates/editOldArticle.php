@@ -1,8 +1,14 @@
+<!--
+  Über dieses Template erhält der Benutzer die Möglichkeit, seinen Artikel zu editieren
+-->
 <link rel="stylesheet" href="assets/stylesheets/editOldArticle.css">
 
 <div class="sideHeaderOldArticleDiv">
     <label class="sideHeaderOldArticle"><?php echo $article['title'] ?></label>
 </div>
+<!--
+  Anzeigen einer Fehlermeldung, wenn der Inhalt der Textarea leer abgespeichert werden soll
+-->
 <?php if(Session::inputfalse()) : ?>
     <div class="infoDiv">
         <span onclick="this.parentElement.style.display='none';">&times;</span>

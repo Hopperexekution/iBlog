@@ -10,7 +10,7 @@
 <form action="index.php?alterPassword" method="post" class="changePassword">
 
   <!--
-    Anzeigen von Fehlermeldungen, wenn beispielsweise das alte Passwort falsch eingegeben wurde
+    Anzeigen einer Fehlermeldung, wenn das alte Passwort falsch eingegeben wurde
   -->
     <?php if(Session::passwordfalse()) : ?>
         <div class="infoDiv">
@@ -18,14 +18,18 @@
             <textarea class="failRegistration" rows="1">Sie haben ein falsches Kennwort eingegeben.</textarea>
         </div>
     <?php endif ?>
-
+    <!--
+      Anzeigen einer Fehlermeldung, wenn das neue Passwort nicht korrekt bestätigt wurde
+    -->
     <?php if(!(Session::passwordchanged()) && Session::passwordchangetried()&&!(Session::passwordtoshort())) : ?>
         <div class="infoDiv">
             <span onclick="this.parentElement.style.display='none';">&times;</span>
             <textarea class="failRegistration" rows="2">Bitte überprüfen Sie die Eingaben Ihres neuen Passworts.</textarea>
         </div>
     <?php endif ?>
-
+    <!--
+      Anzeigen einer Fehlermeldung, wenn das neue Passwort weniger als 8 Zeichen hat
+    -->
     <?php if(Session::passwordtoshort()) : ?>
         <div class="infoDiv">
             <span onclick="this.parentElement.style.display='none';">&times;</span>

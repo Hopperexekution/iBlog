@@ -294,16 +294,16 @@ class Session {
 
       $allowed_extensions = array('png', 'jpg', 'jpeg', 'gif');
       if(!in_array($extension, $allowed_extensions)) {
-         $_SESSION['uploadfailed']="Ungültige Dateiendung. Nur png, jpg, jpeg und gif-Dateien sind erlaubt";
+         $_SESSION['uploadfailed']="Ungültige Dateiendung. Nur png, jpg, jpeg und gif-Dateien sind erlaubt.";
        }else{
          $max_size = 10*1024*1024; //10 MB
          if($_FILES['datei']['size'] > $max_size) {
-            $_SESSION['uploadfailed']="Bitte keine Dateien größer 10MB hochladen";
+            $_SESSION['uploadfailed']="Bitte keine Dateien größer 10MB hochladen.";
           }else{
             $allowed_types = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
             $detected_type = exif_imagetype($_FILES['datei']['tmp_name']);
             if(!in_array($detected_type, $allowed_types)) {
-              $_SESSION['uploadfailed']="Nur der Upload von Bilddateien ist gestattet";
+              $_SESSION['uploadfailed']="Nur der Upload von Bilddateien ist gestattet.";
              }else{
                $new_path = $filepath.Session::getuserid().'.'.$extension;
                if (Session::getpicext(Session::getuserid())!="images/profilepics/user.png"){

@@ -1,9 +1,17 @@
+<!--
+  In dem Template werden alle Artikel des angemeldeten Benutzer angezeigt. Es ist ähnlich aufgebaut wie die Startseite
+-->
 <link rel="stylesheet" href="assets/stylesheets/files.css">
 
 <div class="sideHeaderFilesDiv">
     <label class="sideHeaderFiles">Eigene Beiträge</label>
 </div>
 
+<!--
+  Iterieren über alle Artikel des Benutzers, die nun der Reihe nach angezeigt werden
+  Der Aufbau orientiert sich an der Startseite.
+  Es wird das Bild des Users, sein Name, der Titel, das Erstellungsdatum und die Anzahl der Likes des jeweiligen Artikels ausgegeben
+-->
 <?php if (!empty($myarticles)) foreach ($myarticles as $article) :?>
 
   <div class="titleDiv">
@@ -25,6 +33,9 @@
 
 <?php endforeach ?>
 
+<!--
+  Existiert zu dem angemeldeten Benutzer zunächst noch keine Artikel, wird auf der Seite eine Fehlermeldung ausgegeben
+-->
 <?php if (empty($myarticles)) :?>
     <div class="infoDiv">
         <span onclick="this.parentElement.style.display='none';">&times;</span>
@@ -33,4 +44,3 @@
         </label>
     </div>
 <?php endif ?>
-

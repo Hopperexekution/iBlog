@@ -40,6 +40,9 @@ Außerdem ist es dem Eigentümer möglich, den Artikel von hier aus zu bearbeite
           <?php else :?>
             <img src="assets/images/like.jpg" class="noLikeImg">
           <?php endif ?>
+          <!--
+            Auslesen der Anzahl an "Likes"
+          -->
           <label class="likeNumber"><?php echo Article::getLikes($article['id'])?></label>
       </div>
 

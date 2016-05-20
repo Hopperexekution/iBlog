@@ -1,9 +1,20 @@
-﻿<link rel="stylesheet" href="assets/stylesheets/profil.css">
+<!--
+Über dieses Template erhält der Benutzer diverse Optionen zur Verwaltung seines Accounts.
+Er kann:
+  - seine eigenen Beiträge anzeigen lassen
+  - einen neuen Beitrag erfassen
+  - sein Profilbild anpassen
+  - seinen User löschen
+  - seinen User inklusive seiner Beiträge, Kommentare und Likes löschen
+-->﻿
+<link rel="stylesheet" href="assets/stylesheets/profil.css">
 
 <div class="sideHeaderDiv">
     <label class="sideHeader">Dein Profil</label>
 </div>
-
+<!--
+Bestätigungsmeldung, dass das Passwort erfolgreich geändert wurde
+-->﻿
 <?php if(Session::passwordchanged() && Session::passwordchangetried()) : ?>
     <div class="passwortChangeDiv">
         <span onclick="this.parentElement.style.display='none';">&times;</span>
@@ -41,5 +52,5 @@
         <br>
         <label class="labelAction">User und Beiträge löschen</label>
     </div>
-    
+
 </div>

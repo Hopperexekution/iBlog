@@ -19,7 +19,6 @@ class Mail{
     $headers[] = "Content-type: text/plain; charset=utf-8";
     $headers[] = "From: php.iBlog@gmail.com";
     $headers[] = "Reply-To: php.iBlog@gmail.com";
-    $headers[] = "Subject: {$subject}";
     $headers[] = "X-Mailer: PHP/".phpversion();
 
     $success =  mail ( $to ,  $subject ,  $message, implode("\r\n",$headers) );
@@ -40,7 +39,6 @@ class Mail{
     $headers[] = "Content-type: text/plain; charset=utf-8";
     $headers[] = "From: php.iBlog@gmail.com";
     $headers[] = "Reply-To: php.iBlog@gmail.com";
-    $headers[] = "Subject: {$subject}";
     $headers[] = "X-Mailer: PHP/".phpversion();
 
     $success =  mail ( $to ,  $subject ,  $message, implode("\r\n",$headers) );
