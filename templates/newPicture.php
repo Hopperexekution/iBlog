@@ -11,9 +11,9 @@
   </div>
 <?php endif ?>
 <img src="<?php echo Session::getpicext(Session::getuserid())?>" class="newPicImg">
+<a href="index.php?deletepic"><button class="buttonDelete">Profilbild löschen</button></a>
 
-
-<form action="index.php?uploadPic" method="post" enctype="multipart/form-data">
+<form action="index.php?uploadPic" class="formUpload"method="post" enctype="multipart/form-data">
   <input name="datei" type="file"/>
   <input type="submit" name="submit" value="Hochladen" class="buttonUpload"/>
 </form>

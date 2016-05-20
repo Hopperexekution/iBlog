@@ -25,11 +25,20 @@
     margin-left: 5px;
 }
 
+.formUpload{
+  margin-top: 5px;
+}
+
 .buttonUpload {
     background-color: white;
     border: 0.2px solid rgb(51, 51, 51);
     border-radius: 5px;
     height: 30px;
+    font-size: 12pt;
+}
+
+.buttonDelete{
+  margin-left: 138px;
 }
 
 .failImg{

@@ -386,6 +386,11 @@ class Session {
         return "images/profilepics/user.png";
       }
     }
+    public static function deletePic(){
+      if (Session::getpicext(Session::getuserid())!="images/profilepics/user.png"){
+        unlink($_SESSION['workingdirectory']."/".Session::getpicext(Session::getuserid()));
+      }
+    }
 
 
 

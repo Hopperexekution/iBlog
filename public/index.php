@@ -245,10 +245,9 @@ elseif (isset($_REQUEST['newPic'])){
         $template_data['title'] = 'Neues Foto';
         Template::render('newPicture', $template_data);
     }else{
-        $template_data['articles'] = Article::getAll();
-        $template_data['title'] = 'Startseite';
-        Template::render('start', $template_data);
-        header("Refresh:0; url=index.php?home=1");
+      $template_data['title'] = 'Profil';
+      Template::render('profil', $template_data);
+        header("Refresh:0; url=index.php?profil");
     }
     unset($_SESSION['uploadfailed']);
 
@@ -292,6 +291,10 @@ elseif(isset($_REQUEST['deleteUserArticle'])){
         $template_data['title'] = 'Profil';
         Template::render('profil', $template_data);
     }
+}elseif(isset($_REQUEST['deletepic'])){
+  Session::deletePic();
+  $template_data['title'] = 'Profil';
+  Template::render('profil', $template_data);
 }
 
 elseif (Session::authenticated()) {
