@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="assets/stylesheets/files.css">
 
 <div class="sideHeaderFilesDiv">
-    <label class="sideHeaderFiles">Eigene Beiträge</label>
+    <label class="sideHeader">Eigene Beiträge</label>
 </div>
 
 <!--
@@ -26,7 +26,7 @@
                   <img src="assets/images/like.jpg" class="likeImg">
                   <label class="likeNumber"><?php echo Article::getLikes($article['id'])?></label>
               </div>
-              <label class="dateLabel"><?php echo date("d.m.Y - H:i", strtotime($article['date']))?><br>Thema: <?php echo $article['description'] ?></label>
+              <label class="dateThemeLabel"><?php echo date("d.m.Y - H:i", strtotime($article['date']))?><br>Thema: <?php echo $article['description'] ?></label>
           </div>
       </a>
   </div>

@@ -29,7 +29,7 @@ Außerdem ist es dem Eigentümer möglich, den Artikel von hier aus zu bearbeite
       <!--
         Das Datum wird ausgelesen und formatiert angezeigt (Formatbeispiel: 15.05.2016 - 12:30)
       -->
-      <label class="dateLabel"><?php echo date("d.m.Y - H:i", strtotime($article['date']))?></label>
+      <label class="dateThemeLabel"><?php echo date("d.m.Y - H:i", strtotime($article['date']))?></label>
       <div class="likeDiv">
         <!--
           Die Möglichkeit, den Artikel zu "liken", besteht nur, wenn der Benutzer dne Artikel noch nicht geliked hat
@@ -71,7 +71,7 @@ Außerdem ist es dem Eigentümer möglich, den Artikel von hier aus zu bearbeite
                     <div class="commentsarea">
                         <img src="<?php echo Session::getpicext($comment['user_id'])?>" class="user-articleImg">
                         <label class="nameUserArticle"><?php echo Session::getuserbyid($comment['user_id'])?></label>
-                      <label class="dateLabel"><?php echo date("d.m.Y - H:i", strtotime($comment['date']))?></label>
+                      <label class="dateThemeLabel"><?php echo date("d.m.Y - H:i", strtotime($comment['date']))?></label>
                       <textarea readonly class="textareaReadComment" rows="3"><?php echo $comment[nl2br('text')] ?></textarea>
                     </div>
                 <? endforeach ?>

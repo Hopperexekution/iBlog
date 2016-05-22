@@ -1,4 +1,6 @@
-﻿/* Neuen Artikel hinzufügen*/
+﻿/********** CSS-Datei für die Darstellung von der Seite "Neuen Beitrag erstellen" **********/
+
+/*Einstellungen für das DIV und das Input-Feld*/
 .addArticleDiv{
     margin-left: 12px;
     max-width: 80%;

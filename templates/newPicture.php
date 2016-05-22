@@ -3,8 +3,8 @@
 -->﻿
 <link rel="stylesheet" href="assets/stylesheets/newPicture.css">
 
-<div class="sideHeaderNewPicDiv">
-  <label class="sideHeaderNewPic">Profilfoto hochladen</label>
+<div class="sideHeaderDiv">
+  <label class="sideHeader">Profilfoto hochladen</label>
 </div>
 <!--
 Fehlermeldung, falls der Upload des Bildes fehlgeschlagen ist.
@@ -15,17 +15,20 @@ Fehlermeldung, falls der Upload des Bildes fehlgeschlagen ist.
     <textarea class="failImg" rows="1"><?php echo Session::uploadfailedMsg() ?></textarea>
   </div>
 <?php endif ?>
-<!--
-Anzeige des aktuellen Profilbildes
--->﻿
-<img src="<?php echo Session::getpicext(Session::getuserid())?>" class="newPicImg">
 
-<a href="index.php?deletepic"><button class="buttonDelete">Profilbild löschen</button></a>
+<div>
+  <!--
+  Anzeige des aktuellen Profilbildes
+  -->﻿
+  <img src="<?php echo Session::getpicext(Session::getuserid())?>" class="newPicImg">
 
-<!--
-Nutzen des Input-Types "File" und somit Einbindung eines Standard-File-Choosers.
--->﻿
-<form action="index.php?uploadPic" class="formUpload"method="post" enctype="multipart/form-data">
-  <input name="datei" type="file"/>
-  <input type="submit" name="submit" value="Hochladen" class="buttonUpload"/>
-</form>
+  <a href="index.php?deletepic"><button class="buttonDelete">Profilbild löschen</button></a>
+
+  <!--
+  Nutzen des Input-Types "File" und somit Einbindung eines Standard-File-Choosers.
+  -->﻿
+  <form action="index.php?uploadPic" class="formUpload"method="post" enctype="multipart/form-data">
+    <input name="datei" type="file"/>
+    <input type="submit" name="submit" value="Hochladen" class="buttonUpload"/>
+  </form>
+</div>

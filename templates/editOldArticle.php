@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="assets/stylesheets/editOldArticle.css">
 
 <div class="sideHeaderOldArticleDiv">
-    <label class="sideHeaderOldArticle"><?php echo $article['title'] ?></label>
+    <label class="sideHeader"><?php echo $article['title'] ?></label>
 </div>
 <!--
   Anzeigen einer Fehlermeldung, wenn der Inhalt der Textarea leer abgespeichert werden soll

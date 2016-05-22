@@ -1,4 +1,6 @@
-﻿/*Profil*/
+﻿/********** CSS-Datei für die Darstellung von der Seite "Eigenes Profil" **********/
+
+/*Einstellungen zur Darstellung der verschiedenen Optionen*/
 .profilAction{
     display: flex;
     margin-left: 60px;

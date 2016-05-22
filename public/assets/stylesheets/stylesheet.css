@@ -1,14 +1,8 @@
-﻿/************************************Allgemein************************************/
+﻿/********** CSS-Datei für die allgemeinen Einstellungen und öfter benutzte Styles**********/
+
+/************************************Allgemeine Einstellungen************************************/
 *,html{
     font-family:sans-serif;
-}
-
-@media only screen and (max-width: 1050px) {
-    html, body, header{
-        min-width: 1050px;
-        max-width: 1050px;
-        float: none;
-    }
 }
 
 div.page{
@@ -25,20 +19,21 @@ html,body{
     padding:0px
 }
 
-header{
-    text-align:center;
-    /*position:relative;*/
-    background-color: rgb(51,51,51);
-    color: white;
-    min-height: 50px;
-    max-height: 50px;
-}
-
 main{
     padding: 0 5px 5px;
     border-radius: 5px;
 }
 
+/*Nachdem die Bildschrimweite unter oder gleich 1300px ist, bleibt der body auch bei einer Weite von 1300px*/
+@media only screen and (max-width: 1300px) {
+    body{
+        min-width: 1300px;
+        max-width: 1300px;
+        float: none;
+    }
+}
+
+/*Einstellungen zur Darstellung der Buttons*/
 button{
     background-color: white;
     border: 0.2px solid black;
@@ -52,23 +47,44 @@ button:hover{
     cursor: pointer;
 }
 
-/*Überschriften*/
-.sideHeading {
-    margin-bottom: 0;
-    margin-top: -25px;
-    /*margin-bottom: 0;
-    margin-top: -15px;*/
+/*Darstelung des Headers der Seite*/
+header{
+    background-color: rgb(51,51,51);
+    color: white;
+    min-height: 50px;
+    max-height: 50px;
 }
 
-/*h2 {
-    color: rgb(51, 51, 51);
-    font-weight: lighter;
-    text-align: center;
-    text-decoration: underline;
-}*/
+/**************Einstellungen für die Überschriften**************/
+/*Einstellungen für die Seitenüberschrift*/
+.sideHeading {
+    left: 45%;
+    margin-bottom: 0;
+    margin-top: -25px;
+    position: relative;
+    width: 30%;
+}
 
-/*Infomeldungen*/
+/*Einstellungen zu den Überschriften für jede Seite*/
+.sideHeaderDiv {
+    background-color: rgb(51, 51, 51);
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+    display: flex;
+    margin-top: -35px;
+}
 
+.sideHeader{
+    max-width: 65%;
+    min-width: 65%;
+    overflow: hidden;
+    padding-left: 25px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*Einstellungen für Fehler- und Bestätgungsmeldungen*/
 .infoDiv{
     margin-bottom: 10px;
     text-align: center;
@@ -119,56 +135,7 @@ span {
     min-height: 100vh;
 }
 
-
-.bold, .italic, .underline, .enter{
-    background-color: white;
-    border: 0.2px solid rgb(51, 51, 51);
-    box-shadow: none;
-    margin-top: 5px;
-}
-
-.bold{
-    font-weight: bold;
-}
-
-.italic{
-    font-style: italic;
-}
-
-.underline{
-    text-decoration: underline;
-}
-
-.enter{
-    /*Bild einfügen*/
-}
-
-/*Überschriften für jede Seite*/
-.sideHeaderDiv {
-    background-color: rgb(51, 51, 51);
-    border-radius: 5px;
-    color: white;
-    /*margin-bottom: -12px;*/
-    padding: 5px;
-    display: flex;
-    /*margin-top: 25px;*/
-}
-
-/*.start .sideHeaderDiv{
-    display: flex;
-    /*margin-top: -12px;
-}*/
-
-.sideHeader{
-    max-width: 50%;
-    min-width: 50%;
-    overflow: hidden;
-    padding-left: 25px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-/*Sowohl in start.php als auch in article.php*/
+/*Sowohl in start.php als auch in article.php genutzt*/
 
 .user-articleImg {
     border: 0.2px solid rgb(51, 51, 51);
@@ -186,8 +153,7 @@ span {
     text-overflow: ellipsis;
 }
 
-/*Anzeige Titel der Beiträge*/
-
+/*Einstellungen zur Anzeige der Kurzinfrmationen zu einem Beitrag in files.php und start.php*/
 .titleDiv{
     margin-top: 5px;
 }
@@ -229,8 +195,15 @@ span {
     cursor: pointer;
 }
 
+/*Link um das titleDiv ohne text-decorations darstellen*/
 .linkArticle{
     text-decoration: none;
+}
+
+/*Einstellungen bezüglich der Darstellung der Like-Option*/
+.likeDiv {
+    display: flex;
+    padding-right: 10px;
 }
 
 .likeImg{
@@ -238,35 +211,15 @@ span {
     width: 30px;
 }
 
-.likeNumber, .likeNumberStart{
+.likeNumber{
     color: black;
     font-size: 16px;
-}
-
-.likeDiv {
-    display: flex;
-    padding-right: 10px;
-}
-
-.likeNumber{
     margin-left: -17px;
     margin-top: 30px;
 }
 
-
-
-
-
-
-
-/*
-.userImg {
-    height: 30px;
-    margin-bottom: -5px;
-}
-
-/*Own Articles*/
-.dateLabel {
+/*Darstellung der Datum- und Themen-Anzeige*/
+.dateThemeLabel {
     color: black;
     float: right;
     font-size: 10px;
@@ -276,10 +229,4 @@ span {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-
-.themeLabel{
-    float: right;
-    color: black;
-    font-size: 10px;
 }

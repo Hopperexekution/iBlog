@@ -1,4 +1,6 @@
-﻿/*Login*/
+﻿/********** CSS-Datei für die Darstellung von der Seite "Login" **********/
+
+/*Einstellung für die Darstellung der Input-Felder und des Buttons*/
 .loginDiv {
     border: 0.2px solid black;
     border-radius: 5px;
@@ -27,6 +29,7 @@ main form.login button{
     width: 20%;
 }
 
+/*Einstellung für die Darstellung der Links*/
 .linkDiv {
     font-size: 15px;
     font-style: italic;

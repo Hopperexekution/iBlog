@@ -1,28 +1,15 @@
-/*Überschriften für diese Seite*/
+/********** CSS-Datei für die Darstellung von der Seite "Neues Profilfoto" **********/
 
-.sideHeaderNewPicDiv {
-    background-color: rgb(51, 51, 51);
-    border-radius: 5px;
-    color: white;
-    margin-bottom: 30px;
-    padding: 5px;
-    display: flex;
-    margin-top: 25px;
-}
-
-.sideHeaderNewPic{
-    max-width: 70%;
-    min-width: 70%;
-    overflow: hidden;
-    padding-left: 25px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
+/*Anzeige des aktuellen Profilfotos*/
 .newPicImg{
     border-radius: 5px;
     height: 90px;
     margin-left: 5px;
+}
+
+/*Einstellungen zum Löschen des Fotos und zum Upload eines neuen Fotos*/
+.buttonDelete{
+    margin-left: 138px;
 }
 
 .formUpload{
@@ -37,10 +24,7 @@
     font-size: 12pt;
 }
 
-.buttonDelete{
-  margin-left: 138px;
-}
-
+/*Einstellungen zur Anzeige einer Fehlermeldung*/
 .failImg{
     border: 1px solid;
     border-radius: 5px;

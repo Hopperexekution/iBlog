@@ -1,12 +1,23 @@
-﻿/* Single-Article*/
+﻿/********** CSS-Datei für die Darstellung von der Seite "Artikel anzeigen" **********/
 
-/*article*/
+/*Detail-Einstellungen für das HeaderDiv*/
 .userArticle {
     border: 0.5px solid rgb(51, 51, 51);
     border-radius: 5px;
     float: right;
     height: 25px;
-    margin-bottom: 2px;
+    margin-top: -4px;
+    margin-right: 5px;
+}
+
+
+.owner{
+    max-width: 23%;
+    min-width: 23%;
+    overflow: hidden;
+    padding-right: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .userArticleEdit {
@@ -18,20 +29,6 @@
     padding: 1px;
 }
 
-.article button{
-    margin-left: 85%;
-    margin-top: 5px;
-}
-
-.owner{
-    max-width: 20%;
-    min-width: 20%;
-    overflow: hidden;
-    padding-right: 10px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
 .userArticleBin {
     border: 0.2px solid rgb(51, 51, 51);
     border-radius: 5px;
@@ -39,8 +36,30 @@
     width: 25px;
 }
 
+/*Spezifische Button Positionierung*/
+.article button{
+    margin-left: 85%;
+    margin-top: 5px;
+}
 
-/*Kommentare*/
+/*Einstellungen für die Like-Funktion*/
+.likeDiv{
+    display: flex;
+    margin-top: 4px;
+}
+
+.noLikeImg{
+    height: 30px;
+    width: 30px;
+    opacity: 0.2;
+}
+
+.likeNumber{
+    margin-left: 10px;
+    margin-top: 12px;
+}
+
+/*Einstellungen für die Kommentierfunktion*/
 .commments {
     margin-top: 80px;
 }
@@ -71,20 +90,4 @@
     margin-right: auto;
     resize: none;
     width: 90%;
-}
-
-.likeDiv{
-    display: flex;
-    margin-top: 4px;
-}
-
-.noLikeImg{
-    height: 30px;
-    width: 30px;
-    opacity: 0.2;
-}
-
-.likeNumber{
-    margin-left: 10px;
-    margin-top: 12px;
 }

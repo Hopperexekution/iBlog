@@ -3,7 +3,7 @@
 -->
 <link rel="stylesheet" href="assets/stylesheets/changePassword.css">
 
-<div class="sideHeaderDiv">
+<div class="sideHeaderPasswordDiv">
     <label class="sideHeader">Passwort ändern</label>
 </div>
 

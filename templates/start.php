@@ -6,7 +6,7 @@
    - Autor
    - Suche in allen Kategorien
 -->﻿
-<link rel="stylesheet" href="assets/stylesheets/home.css">
+<link rel="stylesheet" href="assets/stylesheets/start.css">
 <!--
 Formular der Suche: enthält eine SelectionBox, um zwischen verschiedenen Suchkategorien zu wählen, und ein Input-Feld für das Suchkriterium
 -->﻿
@@ -67,7 +67,7 @@ Formular der Suche: enthält eine SelectionBox, um zwischen verschiedenen Suchka
                         <img src="assets/images/like.jpg" class="likeImg">
                         <label class="likeNumber"><?php echo Article::getLikes($article['id'])?></label>
                     </div>
-                    <label class="dateLabel"><?php echo date("d.m.Y - H:i", strtotime($article['date']))?><br>Thema: <?php echo $article['description'] ?></label>
+                    <label class="dateThemeLabel"><?php echo date("d.m.Y - H:i", strtotime($article['date']))?><br>Thema: <?php echo $article['description'] ?></label>
 
                 </div>
             </a>

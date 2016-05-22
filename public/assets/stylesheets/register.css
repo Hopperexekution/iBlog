@@ -1,34 +1,38 @@
-﻿/*Bestätigungscode*/
+﻿/********** CSS-Datei für die Darstellung von der Seite "Bestätigungscode" **********/
+
+/*Einstellungen zur Eingabe des Bestätigungscodes*/
 .registerDiv {
     border: 0.2px solid black;
     border-radius: 5px;
     padding: 2px;
 }
 
-main .register{
+.register{
     width:400px;
     margin:auto
 }
 
-main .register input{
+.register input{
     border: medium none;
     font-size: 14pt;
     width: 100%;
     height: 40px;
 }
 
-main .register button{
+.register button{
     float: right;
     margin-right: 1%;
     width: 49%;
 }
 
+/*Einstellungen zur Anzeige eines Infotexts*/
 .infoCode{
     font-size: 10px;
     margin-top: -2px;
     text-align: center;
 }
 
+/*Stylen des Buttons zum erneuten Senden des Codes*/
 .codeAgain{
     float: right;
     margin-right: 30px;

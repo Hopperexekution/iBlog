@@ -1,16 +1,18 @@
-﻿/*Neuen Nutzer anlegen*/
+﻿/********** CSS-Datei für die Darstellung von der Seite "Neuen Nutzer anlegen" **********/
+
 .newUserDiv {
     border: 0.2px solid black;
     border-radius: 5px;
     padding: 2px;
 }
 
-main form.newUser {
+.newUser {
     width:400px;
     margin:auto
 }
 
-main form.newUser input{
+/*Darstellung der Input-Felder und des Buttons*/
+.newUser input{
     border: medium none;
     font-size: 14pt;
     width: 100%;
@@ -18,11 +20,11 @@ main form.newUser input{
     border-bottom: 0.2px solid black;
 }
 
-main form.newUser input:last-child{
+.newUser input:last-child{
     border: medium none;
 }
 
-main form.newUser button{
+.newUser button{
     float: right;
     margin-top: 10px;
     width: 45%;
