@@ -131,8 +131,8 @@ In der Methode getthemeid() wird die ID des übergebenen Themas ausgelesen
       global $dbh;
 
       //Auslesen aller Artikel und ihrer Themen
-      $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM theme left join theme_article on theme.id = theme_article.theme_id
- left join article on article.id = theme_article.article_id ORDER BY date DESC");
+      $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM article left join theme_article on article.id = theme_article.article_id
+ left join theme on theme.id = theme_article.theme_id ORDER BY date DESC");
 
       $stmt ->execute();
       return $stmt ->fetchAll(PDO::FETCH_ASSOC);
@@ -145,8 +145,8 @@ In der Methode getthemeid() wird die ID des übergebenen Themas ausgelesen
   {
       global $dbh;
       //Auslesen aller Artikel, deren user_id mit der übergebenen übereinstimmt, und ihrer Themen
-      $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM theme left join theme_article on theme.id = theme_article.theme_id
- left join article on article.id = theme_article.article_id where article.user_id=:id ORDER BY date DESC");
+      $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM article left join theme_article on article.id = theme_article.article_id
+ left join theme on theme.id = theme_article.theme_id where article.user_id=:id ORDER BY date DESC");
 
       $stmt ->execute(array(
         'id'=> $id
@@ -202,8 +202,8 @@ In der Methode getthemeid() wird die ID des übergebenen Themas ausgelesen
   public static function searchTitle($title){
       global $dbh;
 
-      $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM theme left join theme_article on theme.id = theme_article.theme_id
- left join article on article.id = theme_article.article_id WHERE article.title LIKE :title ORDER BY date DESC");
+      $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM article left join theme_article on article.id = theme_article.article_id
+ left join theme on theme.id = theme_article.theme_id WHERE article.title LIKE :title ORDER BY date DESC");
 
       $stmt->execute(array(
         'title' => '%'.$title.'%'
@@ -219,8 +219,8 @@ In der Methode getthemeid() wird die ID des übergebenen Themas ausgelesen
     public static function searchUser($user){
       global $dbh;
 
-      $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM theme left join theme_article on theme.id = theme_article.theme_id
- left join article on article.id = theme_article.article_id left join user on article.user_id=user.id WHERE user.lastname LIKE :user OR user.firstname LIKE :user ORDER BY date DESC");
+      $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM article left join theme_article on article.id = theme_article.article_id
+ left join theme on theme.id = theme_article.theme_id left join user on article.user_id=user.id WHERE user.lastname LIKE :user OR user.firstname LIKE :user ORDER BY date DESC");
 
       $stmt->execute(array(
         'user' => '%'.$user.'%'
@@ -236,8 +236,8 @@ In der Methode getthemeid() wird die ID des übergebenen Themas ausgelesen
   public static function searchTheme($theme){
     global $dbh;
 
-    $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM theme left join theme_article on theme.id = theme_article.theme_id
-left join article on article.id = theme_article.article_id  WHERE theme.description LIKE :theme ORDER BY date DESC");
+    $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM article left join theme_article on article.id = theme_article.article_id
+left join theme on theme.id = theme_article.theme_id  WHERE theme.description LIKE :theme ORDER BY date DESC");
 
     $stmt->execute(array(
       'theme' => '%'.$theme.'%'
@@ -253,8 +253,8 @@ Auslesen aller Artikel, deren Titel, Thema oder Autorennamen den übergebenen St
 public static function searchAll($input){
   global $dbh;
 
-  $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM theme left join theme_article on theme.id = theme_article.theme_id
-left join article on article.id = theme_article.article_id left join user on article.user_id=user.id WHERE user.lastname LIKE :input OR user.firstname LIKE :input OR theme.description LIKE :input OR article.title LIKE :input ORDER BY date DESC");
+  $stmt = $dbh->prepare("SELECT article.id, article.title, article.user_id, article.date, theme.description FROM article left join theme_article on article.id = theme_article.article_id
+left join theme on theme.id = theme_article.theme_id left join user on article.user_id=user.id WHERE user.lastname LIKE :input OR user.firstname LIKE :input OR theme.description LIKE :input OR article.title LIKE :input ORDER BY date DESC");
 
   $stmt->execute(array(
     'input' => '%'.$input.'%'
